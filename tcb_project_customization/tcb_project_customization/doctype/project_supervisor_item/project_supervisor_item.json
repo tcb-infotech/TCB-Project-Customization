@@ -1,0 +1,48 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-10-18 11:09:50.204121",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "supervisor_id",
+  "user_name",
+  "work"
+ ],
+ "fields": [
+  {
+   "fetch_from": "supervisor_id.employee_name",
+   "fieldname": "user_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "work",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Work"
+  },
+  {
+   "fieldname": "supervisor_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Supervisor",
+   "options": "Employee"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-10-18 12:11:59.360068",
+ "modified_by": "Administrator",
+ "module": "TCB Project Customization",
+ "name": "Project Supervisor Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

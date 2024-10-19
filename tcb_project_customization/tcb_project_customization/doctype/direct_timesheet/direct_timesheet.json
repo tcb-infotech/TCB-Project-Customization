@@ -1,0 +1,126 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:DTS-{YYYY}-{#####}",
+ "creation": "2024-10-16 16:18:10.183780",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_csae",
+  "amended_from",
+  "project",
+  "project_name",
+  "customer",
+  "column_break_jqjq",
+  "company",
+  "start_date",
+  "end_date",
+  "section_break_srld",
+  "time_logs"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_csae",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Direct Timesheet",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Project",
+   "options": "Project",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "project.customer",
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_jqjq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_srld",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "time_logs",
+   "fieldtype": "Table",
+   "label": "Time Sheets",
+   "options": "Direct Timesheet Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date",
+   "options": "Today",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "project.project_name",
+   "fieldname": "project_name",
+   "fieldtype": "Data",
+   "label": "Project Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [
+  {
+   "link_doctype": "Timesheet",
+   "link_fieldname": "custom_direct_timesheet"
+  }
+ ],
+ "modified": "2024-10-18 12:46:21.245986",
+ "modified_by": "Administrator",
+ "module": "TCB Project Customization",
+ "name": "Direct Timesheet",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

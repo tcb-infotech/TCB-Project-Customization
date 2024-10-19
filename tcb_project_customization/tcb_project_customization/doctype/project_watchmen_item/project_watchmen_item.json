@@ -1,0 +1,49 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-10-18 12:09:12.018427",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "watchman_id",
+  "user_name",
+  "shift"
+ ],
+ "fields": [
+  {
+   "fieldname": "watchman_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Watchman ID",
+   "options": "Employee"
+  },
+  {
+   "fetch_from": "watchman_id.employee_name",
+   "fieldname": "user_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "watchman_id.default_shift",
+   "fieldname": "shift",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Shift",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-10-18 12:24:01.950503",
+ "modified_by": "Administrator",
+ "module": "TCB Project Customization",
+ "name": "Project Watchmen Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

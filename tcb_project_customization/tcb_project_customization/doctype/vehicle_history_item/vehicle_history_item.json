@@ -1,0 +1,48 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-10-18 15:00:57.600279",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "move_from",
+  "move_to",
+  "movement_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "move_from",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Move From",
+   "options": "Project"
+  },
+  {
+   "bold": 1,
+   "fieldname": "move_to",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Move To",
+   "options": "Project"
+  },
+  {
+   "fieldname": "movement_date",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Movement Date"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-10-18 15:46:01.477372",
+ "modified_by": "Administrator",
+ "module": "TCB Project Customization",
+ "name": "Vehicle History Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
