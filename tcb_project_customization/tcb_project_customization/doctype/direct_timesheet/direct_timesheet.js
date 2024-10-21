@@ -10,12 +10,41 @@ frappe.ui.form.on("Direct Timesheet", {
 				}
 			}
 		});
+		frm.set_query("supervisor_id","supervisor_details", function(doc, cdt, cdn){
+            return{
+                "filters":{
+                    "designation": "Supervisor"
+                }
+            }
+        });
+
+        frm.set_query("gang_leader_id","gang_leader_details", function(doc, cdt, cdn){
+            return{
+                "filters":{
+                    "designation": "Gang Leader"
+                }
+            }
+        });
+        
+        frm.set_query("watchman_id","watchmen_details", function(doc, cdt, cdn){
+            return{
+                "filters":{
+                    "designation": "Watchman"
+                }
+            }
+        });
+
+		if(!frm.is_new()){
+			frm.add_custom_button(__('Sync Project Details'), function() {
+				get_project_details(frm);
+			}, __('Actions'));
+		}
 
 
-		if (frm.is_new()) {
-            frm.clear_table('time_logs');
-            frm.refresh_field('time_logs');
-        }
+		// if (frm.is_new()) {
+        //     frm.clear_table('time_logs');
+        //     frm.refresh_field('time_logs');
+        // }
 
 		if(frm.doc.docstatus == 0){
 		frm.add_custom_button(__('Fill Timesheet'), function() {
@@ -27,7 +56,14 @@ frappe.ui.form.on("Direct Timesheet", {
 								fieldname: 'gang_leader',
 								fieldtype: 'Link',
 								options: 'Employee',
-								reqd: 1
+								reqd: 1,
+								get_query: function() {
+									return {
+										filters: {
+											"designation": "Gang Leader"
+										}
+									};
+								}
 							},
 							{
 								label: 'Activity Type',
@@ -101,6 +137,20 @@ frappe.ui.form.on("Direct Timesheet", {
 		});
 	}
 	},
+	project: function(frm) {
+        if (frm.doc.project && !frm.is_new()) {
+			get_project_details(frm);
+        }else{
+			frm.doc.supervisor_details = []
+			frm.doc.gang_leader_details = []
+			frm.doc.watchmen_details = []
+
+			frm.refresh_field('supervisor_details');
+			frm.refresh_field('gang_leader_details');
+			frm.refresh_field('watchmen_details');
+		}
+    },
+
 });
 
 frappe.ui.form.on("Direct Timesheet Item",{
@@ -133,3 +183,29 @@ var calculate_end_time = function (frm, cdt, cdn) {
 		});
 	}
 };
+
+
+function get_project_details(frm){
+	if (frm.doc.project) {
+		frm.call({
+			method: 'tcb_project_customization.tcb_project_customization.doctype.direct_timesheet.direct_timesheet.sync_project_details_with_timesheet',
+			args: {
+				timesheet_id: frm.doc.name,
+				project: frm.doc.project
+			},
+			freeze: true,
+			freeze_message: __('Syncing Project Details...'),
+			callback: function(r) {
+				if (!r.exc) {
+					frm.refresh();
+					frappe.show_alert({
+						message: __('Project details synced successfully'),
+						indicator: 'green'
+					});
+				}
+			}
+		});
+	} else {
+		frappe.throw(__('Please select a project first'));
+	}
+}

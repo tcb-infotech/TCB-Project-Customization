@@ -16,7 +16,13 @@
   "start_date",
   "end_date",
   "section_break_srld",
-  "time_logs"
+  "time_logs",
+  "project_details_section",
+  "supervisor_details",
+  "gang_leader_details",
+  "watchmen_details",
+  "remarks_section",
+  "remarks"
  ],
  "fields": [
   {
@@ -89,6 +95,40 @@
    "fieldtype": "Date",
    "label": "End Date",
    "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "project_details_section",
+   "fieldtype": "Section Break",
+   "label": "Project Details"
+  },
+  {
+   "fieldname": "supervisor_details",
+   "fieldtype": "Table",
+   "label": "Supervisor Details",
+   "options": "Project Supervisor Item"
+  },
+  {
+   "fieldname": "gang_leader_details",
+   "fieldtype": "Table",
+   "label": "Gang Leader Details",
+   "options": "Project Gang Leader Item"
+  },
+  {
+   "fieldname": "watchmen_details",
+   "fieldtype": "Table",
+   "label": "Watchmen Details",
+   "options": "Project Watchmen Item"
+  },
+  {
+   "fieldname": "remarks_section",
+   "fieldtype": "Section Break",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Long Text",
+   "label": "remarks"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -99,7 +139,7 @@
    "link_fieldname": "custom_direct_timesheet"
   }
  ],
- "modified": "2024-10-18 12:46:21.245986",
+ "modified": "2024-10-21 12:29:01.015569",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Direct Timesheet",

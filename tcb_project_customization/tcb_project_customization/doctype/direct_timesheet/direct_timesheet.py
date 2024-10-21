@@ -3,7 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
-from frappe.utils import add_to_date, flt, get_datetime, getdate, time_diff_in_hours
+from frappe.utils import getdate, time_diff_in_hours, today
 from frappe import _
 from collections import defaultdict
 
@@ -117,7 +117,8 @@ class DirectTimesheet(Document):
             
     def set_dates(self):
         if self.docstatus < 2 and self.time_logs:
-            start_date = min(getdate(d.from_time) for d in self.time_logs)
+            # start_date = min(getdate(d.from_time) for d in self.time_logs)
+            start_date = today()
             end_date = max(getdate(d.to_time) for d in self.time_logs)
 
             if start_date and end_date:
@@ -125,4 +126,71 @@ class DirectTimesheet(Document):
                 self.end_date = getdate(end_date)
 
 
+@frappe.whitelist()
+def sync_project_details_with_timesheet(timesheet_id, project):
+    """
+    Syncs project details with timesheet using minimal required data
+    
+    Args:
+        timesheet_id: ID of the Direct Timesheet document
+        project: Project ID to sync from
+    Returns:
+        dict: Status and message
+    """
+    try:
+        # Validate inputs
+        if not timesheet_id:
+            frappe.throw(_("Timesheet ID is required"))
+        if not project:
+            frappe.throw(_("Project is required"))
 
+        # Get the documents
+        timesheet_doc = frappe.get_doc("Direct Timesheet", timesheet_id)
+        project_doc = frappe.get_doc("Project", project)
+
+        timesheet_doc.project = project
+        
+        # Clear existing entries
+        timesheet_doc.supervisor_details = []
+        timesheet_doc.gang_leader_details = []
+        timesheet_doc.watchmen_details = []
+        
+        # Sync supervisor details with correct fields
+        for supervisor in project_doc.custom_supervisor_details:
+            timesheet_doc.append("supervisor_details", {
+                "supervisor_id": supervisor.supervisor_id,
+                "user_name": supervisor.user_name,
+                "work": supervisor.work
+            })
+        
+        # Sync gang leader details with correct fields
+        for gang_leader in project_doc.custom_gang_leader_details:
+            timesheet_doc.append("gang_leader_details", {
+                "gang_leader_id": gang_leader.gang_leader_id,
+                "user_name": gang_leader.user_name,
+                "labour_count": gang_leader.labour_count,
+                "work": gang_leader.work
+            })
+        
+        # Sync watchmen details with correct fields
+        for watchman in project_doc.custom_watchmen_details:
+            timesheet_doc.append("watchmen_details", {
+                "watchman_id": watchman.watchman_id,
+                "user_name": watchman.user_name,
+                "shift": watchman.shift
+            })
+        
+        # Save the document
+        timesheet_doc.flags.ignore_validate = True
+        timesheet_doc.flags.ignore_mandatory = True
+        timesheet_doc.save()
+        frappe.db.commit()
+        
+        return {
+            "status": "success",
+            "message": _("Project details synced successfully")
+        }
+        
+    except Exception as e:
+        frappe.log_error(frappe.get_traceback(), _("Project Sync Error"))
+        frappe.throw(_("Error syncing project details: {0}").format(str(e)))

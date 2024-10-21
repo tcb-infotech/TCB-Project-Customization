@@ -43,7 +43,10 @@ app_license = "mit"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-doctype_js = {"Vehicle" : "public/js/custom_vehicle.js"}
+doctype_js = {
+    "Vehicle" : "public/js/custom_vehicle.js",
+    "Project" : "public/js/custom_project.js",
+}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -137,13 +140,11 @@ doctype_js = {"Vehicle" : "public/js/custom_vehicle.js"}
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	"Project": {
+		"validate": "tcb_project_customization.doc_events.project.validate",
+	}
+}
 
 # Scheduled Tasks
 # ---------------
