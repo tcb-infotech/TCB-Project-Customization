@@ -9,7 +9,7 @@ frappe.ui.form.on("Vehicle",{
                         fieldname: "move_from",
                         fieldtype: "Link",
                         options: "Project",
-                        default: frm.doc.custom_project || "",
+                        default: frm.doc.custom_project || "Initial",
                         read_only: 1,
                     },
                     {
@@ -20,7 +20,7 @@ frappe.ui.form.on("Vehicle",{
                         fieldname: "move_from_project_name",
                         fieldtype: "Data",
                         label: "Project Name",
-                        default: frm.doc.custom_project_name,
+                        default: frm.doc.custom_project_name || "Initial",
                         read_only: 1
                     },
                     {
@@ -65,7 +65,7 @@ frappe.ui.form.on("Vehicle",{
                             let d1 = frappe.msgprint({
                                 title: __("Confirmation"),
                                 message: __(
-                                  `Are you sure you want to move Vehicle from ${values.move_from_project_name || 'None'} to ${values.move_to_project_name}?`
+                                  `Are you sure you want to move Vehicle from ${values.move_from_project_name || 'Inital'} to ${values.move_to_project_name}?`
                                 ),
                                 primary_action: {
                                   label: "Proceed",
@@ -106,15 +106,15 @@ function move_vehicle(frm, values) {
 		"custom_vehicle_movement_history"
 	  );
   
-	  console.log(frappe.datetime.now_datetime());
   
 	  let movement_date_value = frappe.datetime.now_datetime();
   
 	  // Set values in the new row
 	  frappe.model.set_value(new_row.doctype, new_row.name, {
         movement_date: movement_date_value,
-        move_from: values.move_from,
+        move_from: values.move_from || "Initial",
         move_to: values.move_to,
+        last_odometer: frm.doc.last_odometer
 	  });
   
 	  // Refresh the child table
