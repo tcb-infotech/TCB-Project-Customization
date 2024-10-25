@@ -236,12 +236,18 @@ def get_columns(filters):
             "options": "Subcontractor",
             "width": 120,
         },
-        #   {
-        #     "label": _("Subcontractor"),
-        #     "fieldname": "subcontractor_name",
-        #     "fieldtype": "Data", 
-        #     "width": 100,
-        # },
+          {
+            "label": _("Subcontractor"),
+            "fieldname": "subcontractor_name",
+            "fieldtype": "Data", 
+            "width": 100,
+        },
+          {
+            "label": _("Description"),
+            "fieldname": "description_about_entry",
+            "fieldtype": "Small Text", 
+            "width": 150,
+        },
         {
             "label": _("Item"),
             "fieldname": "item_code",
@@ -314,7 +320,7 @@ def get_columns(filters):
                 "options": "Brand",
                 "width": 100,
             },
-            {"label": _("Description"), "fieldname": "description", "width": 200},
+            {"label": _("Item Description"), "fieldname": "description", "width": 200},
             {
                 "label": _("Incoming Rate"),
                 "fieldname": "incoming_rate",
@@ -444,8 +450,9 @@ def get_stock_ledger_entries(filters, items):
             warehouse.custom_project.as_('project'),
             project.project_name.as_("project_name"),  # Add project name
             warehouse.custom_subcontractor.as_("subcontractor"),
-            # subcontractor.subcontractor_name.as_("subcontractor_name"),
+            subcontractor.subcontractor_name.as_("subcontractor_name"),
             se.stock_entry_type,
+            se.custom_description_about_entry.as_('description_about_entry'),
         )
         .where(
             (sle.docstatus < 2)
