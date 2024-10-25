@@ -115,7 +115,7 @@ def get_vehicle_data(filters):
             v.model,
             COALESCE(
                 (SELECT last_odometer 
-                 FROM `tabVehicle History Item` vh 
+                 FROM `tabVehicle Location History Item` vh 
                  WHERE vh.parent = v.name 
                  ORDER BY vh.movement_date DESC 
                  LIMIT 1),
@@ -142,7 +142,7 @@ def get_movement_history(vehicle):
             movement_date,
             last_odometer
         FROM
-            `tabVehicle History Item`
+            `tabVehicle Location History Item`
         WHERE
             parent = %s
         ORDER BY
