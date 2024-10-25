@@ -1,22 +1,36 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2024-10-18 15:00:57.600279",
+ "creation": "2024-10-22 13:27:49.998755",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "used_in",
+  "move_from",
+  "move_to",
   "movement_date",
-  "out_date",
   "last_odometer"
  ],
  "fields": [
   {
+   "fieldname": "move_from",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Move From"
+  },
+  {
+   "bold": 1,
+   "fieldname": "move_to",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Move To",
+   "options": "Location"
+  },
+  {
    "fieldname": "movement_date",
    "fieldtype": "Datetime",
    "in_list_view": 1,
-   "label": "In Date"
+   "label": "Movement Date"
   },
   {
    "fieldname": "last_odometer",
@@ -25,29 +39,15 @@
    "label": "Odometer Value (Last)",
    "non_negative": 1,
    "precision": "2"
-  },
-  {
-   "bold": 1,
-   "fieldname": "used_in",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Used In",
-   "options": "Project"
-  },
-  {
-   "fieldname": "out_date",
-   "fieldtype": "Datetime",
-   "in_list_view": 1,
-   "label": "Out Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-10-23 15:19:23.808970",
+ "modified": "2024-10-22 13:28:26.402851",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
- "name": "Vehicle History Item",
+ "name": "Vehicle Location History Item",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",
