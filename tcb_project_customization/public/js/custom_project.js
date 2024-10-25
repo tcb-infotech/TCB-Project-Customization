@@ -1,236 +1,29 @@
-// // frappe.ui.form.on("Project",{
-// //     refresh(frm){
-// //         frm.set_query("supervisor_id","custom_supervisor_details", function(doc, cdt, cdn){
-// //             return{
-// //                 "filters":{
-// //                     "designation": "Supervisor"
-// //                 }
-// //             }
-// //         });
+frappe.ui.form.on("Project",{
+    refresh(frm){
+        frm.set_query("supervisor_id","custom_supervisor_details", function(doc, cdt, cdn){
+            return{
+                "filters":{
+                    "designation": "Supervisor"
+                }
+            }
+        });
 
-// //         frm.set_query("gang_leader_id","custom_gang_leader_details", function(doc, cdt, cdn){
-// //             return{
-// //                 "filters":{
-// //                     "designation": "Gang Leader"
-// //                 }
-// //             }
-// //         });
+        frm.set_query("gang_leader_id","custom_gang_leader_details", function(doc, cdt, cdn){
+            return{
+                "filters":{
+                    "designation": "Gang Leader"
+                }
+            }
+        });
         
-// //         frm.set_query("watchman_id","custom_watchmen_details", function(doc, cdt, cdn){
-// //             return{
-// //                 "filters":{
-// //                     "designation": "Watchman"
-// //                 }
-// //             }
-// //         });
-// //     }
-// // });
+        frm.set_query("watchman_id","custom_watchmen_details", function(doc, cdt, cdn){
+            return{
+                "filters":{
+                    "designation": "Watchman"
+                }
+            }
+        });
 
-
-
-
-
-
-
-
-// frappe.ui.form.on('Project', {
-//     refresh: function(frm) {
-//         frm.add_custom_button(__('Add Vehicle In Project'), function() {
-//             let d = new frappe.ui.Dialog({
-//                 title: 'Vehicle Assignment',
-//                 fields: [
-//                     {
-//                         label: 'Vehicles',
-//                         fieldname: 'vehicle_selection_html',
-//                         fieldtype: 'HTML'
-//                     }
-//                 ],
-//                 primary_action_label: 'Add Selected Vehicles',
-//                 primary_action(values) {
-//                     updateVehicles(frm, d);
-//                 }
-//             });
-
-//             fetchAndRenderVehicles(frm, d);
-//             d.show();
-//         });
-//     }
-// });
-
-// function fetchAndRenderVehicles(frm, dialog) {
-//     frappe.call({
-//         method: 'frappe.client.get_list',
-//         args: {
-//             doctype: 'Vehicle',
-//             fields: ['name', 'license_plate', 'custom_project', 'last_odometer', 'make'],
-//             order_by: 'license_plate asc'
-//         },
-//         callback: function(r) {
-//             let vehicles = r.message || [];
-//             let html = `
-//                 <div class="vehicle-selection">
-//                     <div class="mb-3">
-//                         <button class="btn btn-xs btn-default select-all">Select All</button>
-//                         <button class="btn btn-xs btn-default unselect-all ml-2">Unselect All</button>
-//                     </div>
-//                     <div class="vehicle-lists">
-//                         <div class="in-project mb-4">
-//                             <h6>Vehicles In Project</h6>
-//                             <div class="vehicle-checkboxes d-flex flex-wrap ">
-//                                 ${vehicles
-//                                     .filter(v => v.custom_project === frm.doc.name)
-//                                     .map(vehicle => createVehicleCheckbox(vehicle, true))
-//                                     .join('')}
-//                             </div>
-//                         </div>
-//                         <div class="not-in-project">
-//                             <h6>Vehicles Not In Project</h6>
-//                             <div class="vehicle-checkboxes d-flex flex-wrap ">
-//                                 ${vehicles
-//                                     .filter(v => v.custom_project !== frm.doc.name)
-//                                     .map(vehicle => createVehicleCheckbox(vehicle, false))
-//                                     .join('')}
-//                             </div>
-//                         </div>
-//                     </div>
-//                 </div>
-//             `;
-
-//             dialog.fields_dict.vehicle_selection_html.$wrapper.html(html);
-
-//             // Bind events
-//             dialog.$wrapper.find('.select-all').on('click', function() {
-//                 dialog.$wrapper.find('input[type="checkbox"]').prop('checked', true);
-//             });
-
-//             dialog.$wrapper.find('.unselect-all').on('click', function() {
-//                 dialog.$wrapper.find('input[type="checkbox"]').prop('checked', false);
-//             });
-//         }
-//     });
-// }
-
-// function createVehicleCheckbox(vehicle, inProject) {
-//     return `
-//         <div class="checkbox ">
-//             <label class="ml-4">
-//                 <input type="checkbox" 
-//                        data-vehicle="${vehicle.name}"
-//                        data-odometer="${vehicle.last_odometer || 0}"
-//                        data-current-project="${vehicle.custom_project || ''}"
-//                        ${inProject ? 'checked' : ''}>
-//                 ${vehicle.license_plate || vehicle.name} : ${vehicle.make}
-//             </label>
-//         </div>
-//     `;
-// }
-
-// function updateVehicles(frm, dialog) {
-//     let promises = [];
-    
-//     // Get only checked vehicles
-//     dialog.$wrapper.find('input[type="checkbox"]:checked').each(function() {
-//         let $checkbox = $(this);
-//         let vehicleName = $checkbox.data('vehicle');
-//         let previousProject = $checkbox.data('current-project');
-//         let currentOdometer = $checkbox.data('odometer');
-
-//         // Skip if vehicle is already in this project
-//         // if (previousProject === frm.doc.name) {
-//         //     return;
-//         // }
-
-//         // Create promise for this vehicle's update
-//         let promise = new Promise((resolve, reject) => {
-//             // First get the current vehicle data to ensure we have the latest project
-//             frappe.call({
-//                 method: 'frappe.client.get',
-//                 args: {
-//                     doctype: 'Vehicle',
-//                     name: vehicleName
-//                 },
-//                 callback: function(vehicle_r) {
-//                     let currentVehicle = vehicle_r.message;
-//                     let moveFrom = currentVehicle.custom_project || '';  // Get the current project before update
-                    
-//                     // Only proceed if the current project is different from the target project
-//                     // if (currentVehicle.custom_project !== frm.doc.name) {
-//                         // Update the vehicle's project field
-//                         frappe.call({
-//                             method: 'frappe.client.set_value',
-//                             args: {
-//                                 doctype: 'Vehicle',
-//                                 name: vehicleName,
-//                                 fieldname: 'custom_project',
-//                                 value: frm.doc.name
-//                             },
-//                             callback: function(r) {
-//                                 // Then add movement history entry with the correct move_from
-//                                 frappe.call({
-//                                     method: 'frappe.client.insert',
-//                                     args: {
-//                                         doc: {
-//                                             doctype: 'Vehicle History Item',
-//                                             parent: vehicleName,
-//                                             parenttype: 'Vehicle',
-//                                             parentfield: 'custom_vehicle_movement_history',
-//                                             // move_from: moveFrom || "None",
-//                                             used_in: frm.doc.name,
-//                                             movement_date: frappe.datetime.now_datetime(),
-//                                             // out_date: value
-//                                             last_odometer: currentOdometer
-//                                         }
-//                                     },
-//                                     callback: function(r) {
-//                                         resolve();
-//                                     },
-//                                     error: function(err) {
-//                                         reject(err);
-//                                     }
-//                                 });
-//                             },
-//                             error: function(err) {
-//                                 reject(err);
-//                             }
-//                         });
-//                     // } else {
-//                         // resolve(); // Resolve immediately if no update is needed
-//                     // }
-//                 },
-//                 error: function(err) {
-//                     reject(err);
-//                 }
-//             });
-//         });
-
-//         promises.push(promise);
-//     });
-
-//     // Wait for all updates to complete
-//     Promise.all(promises)
-//         .then(() => {
-//             frappe.show_alert({
-//                 message: __('Vehicles updated successfully'),
-//                 indicator: 'green'
-//             });
-//             dialog.hide();
-//             frm.reload_doc();
-//         })
-//         .catch((err) => {
-//             frappe.show_alert({
-//                 message: __('Error updating vehicles'),
-//                 indicator: 'red'
-//             });
-//             console.error(err);
-//         });
-// }
-
-
-
-
-
-frappe.ui.form.on('Project', {
-    refresh: function(frm) {
         frm.add_custom_button(__('Add Vehicle In Project'), function() {
             let d = new frappe.ui.Dialog({
                 title: 'Vehicle Assignment',
