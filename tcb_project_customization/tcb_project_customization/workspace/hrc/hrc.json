@@ -1,0 +1,158 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"HP_MFOIhN3\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">HRC</span>\",\"col\":12}},{\"id\":\"zgtibB99bs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"w76r7p-QZM\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project\",\"col\":3}},{\"id\":\"htBz9S13i8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Warehouse\",\"col\":3}},{\"id\":\"KzOGxl_XV3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vehicle\",\"col\":3}},{\"id\":\"Zp3U08U2ug\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"9_WlaFYnGB\",\"type\":\"card\",\"data\":{\"card_name\":\"Stock Reports\",\"col\":4}},{\"id\":\"ACyhx-QwZ4\",\"type\":\"card\",\"data\":{\"card_name\":\"Vehicle Reports\",\"col\":4}}]",
+ "creation": "2024-10-26 14:59:56.185833",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "color-review-points",
+ "idx": 0,
+ "indicator_color": "",
+ "is_hidden": 0,
+ "label": "HRC",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Stock Reports",
+   "link_count": 5,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Total Stock Summary",
+   "link_count": 0,
+   "link_to": "Total Stock Summary",
+   "link_type": "Report",
+   "onboard": 0,
+   "report_ref_doctype": "Stock Entry",
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Stock Ledger HRC",
+   "link_count": 0,
+   "link_to": "Stock Ledger HRC",
+   "link_type": "Report",
+   "onboard": 0,
+   "report_ref_doctype": "Stock Entry",
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Stock Balance",
+   "link_count": 0,
+   "link_to": "Stock Balance",
+   "link_type": "Report",
+   "onboard": 0,
+   "report_ref_doctype": "Stock Ledger Entry",
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Stock Ageing",
+   "link_count": 0,
+   "link_to": "Stock Ageing",
+   "link_type": "Report",
+   "onboard": 0,
+   "report_ref_doctype": "Item",
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Subcontractor Warehouse Stock",
+   "link_count": 0,
+   "link_to": "Subcontractor Warehouse Stock",
+   "link_type": "Report",
+   "onboard": 0,
+   "report_ref_doctype": "Subcontractor",
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Vehicle Reports",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Vehicle Expenses",
+   "link_count": 0,
+   "link_to": "Vehicle Expenses",
+   "link_type": "Report",
+   "onboard": 0,
+   "report_ref_doctype": "Vehicle",
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Vehicle Tracking",
+   "link_count": 0,
+   "link_to": "Vehicle Tracking",
+   "link_type": "Report",
+   "onboard": 0,
+   "report_ref_doctype": "Vehicle",
+   "type": "Link"
+  }
+ ],
+ "modified": "2024-10-26 15:40:17.587855",
+ "modified_by": "Administrator",
+ "module": "TCB Project Customization",
+ "name": "HRC",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 1.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Item",
+   "link_to": "Item",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Project",
+   "link_to": "Project",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Warehouse",
+   "link_to": "Warehouse",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Vehicle",
+   "link_to": "Vehicle",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "HRC"
+}

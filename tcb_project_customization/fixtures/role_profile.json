@@ -1,0 +1,59 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2024-10-26 16:00:04.431829",
+  "name": "Project Mgt",
+  "role_profile": "Project Mgt",
+  "roles": [
+   {
+    "parent": "Project Mgt",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "System Manager"
+   },
+   {
+    "parent": "Project Mgt",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Stock Manager"
+   },
+   {
+    "parent": "Project Mgt",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Stock User"
+   },
+   {
+    "parent": "Project Mgt",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Projects User"
+   },
+   {
+    "parent": "Project Mgt",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Projects Manager"
+   },
+   {
+    "parent": "Project Mgt",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Report Manager"
+   },
+   {
+    "parent": "Project Mgt",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Item Manager"
+   },
+   {
+    "parent": "Project Mgt",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Fleet Manager"
+   }
+  ]
+ }
+]

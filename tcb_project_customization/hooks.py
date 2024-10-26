@@ -46,6 +46,7 @@ app_license = "mit"
 doctype_js = {
     "Vehicle" : "public/js/custom_vehicle.js",
     "Project" : "public/js/custom_project.js",
+    "Employee" : "public/js/custom_employee.js",
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -243,3 +244,13 @@ doc_events = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+
+
+fixtures=[
+    {
+        "dt": "Role Profile",
+        "filters":[
+            ['name','=','Project Mgt']
+        ]
+    }
+]
