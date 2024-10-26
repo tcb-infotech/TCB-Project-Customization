@@ -20,7 +20,7 @@ def get_columns(filters):
             "width": 200
         },
         {
-            "label": _("Current Location"),
+            "label": _("Current Project"),
             "fieldname": "custom_project_name",
             "fieldtype": "Data",
             "width": 200
