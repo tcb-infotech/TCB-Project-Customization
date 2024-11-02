@@ -1,0 +1,31 @@
+{
+ "attach_print": 0,
+ "channel": "System Notification",
+ "condition": "",
+ "creation": "2024-10-30 11:21:12.824682",
+ "date_changed": "end_date",
+ "days_in_advance": 10,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Vehicle",
+ "enabled": 1,
+ "event": "Days Before",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<p>Insurance for Vehicle {{doc.name}} expires in 10 days</p>\n",
+ "message_type": "Markdown",
+ "modified": "2024-10-30 13:34:17.109444",
+ "modified_by": "Administrator",
+ "module": "TCB Project Customization",
+ "name": "Vehicle Insurance Expiry",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "receiver_by_role": "All"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "subject": "Insurance for Vehicle {{doc.name}} will expire in 10 days!",
+ "value_changed": "custom_puc_number"
+}

@@ -47,6 +47,7 @@ doctype_js = {
     "Vehicle" : "public/js/custom_vehicle.js",
     "Project" : "public/js/custom_project.js",
     "Employee" : "public/js/custom_employee.js",
+    'Vehicle Log':'public/js/custom_vehicle_log.js',
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -144,7 +145,7 @@ doctype_js = {
 doc_events = {
 	"Project": {
 		"validate": "tcb_project_customization.doc_events.project.validate",
-	}
+	},
 }
 
 # Scheduled Tasks

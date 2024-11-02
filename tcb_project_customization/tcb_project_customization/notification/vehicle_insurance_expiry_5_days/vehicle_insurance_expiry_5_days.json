@@ -1,0 +1,29 @@
+{
+ "attach_print": 0,
+ "channel": "System Notification",
+ "creation": "2024-10-30 13:31:39.329984",
+ "date_changed": "end_date",
+ "days_in_advance": 5,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Vehicle",
+ "enabled": 1,
+ "event": "Days Before",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "Add your message here",
+ "message_type": "Markdown",
+ "modified": "2024-10-30 13:31:50.986449",
+ "modified_by": "Administrator",
+ "module": "TCB Project Customization",
+ "name": "Vehicle Insurance Expiry 5 Days",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "receiver_by_role": "All"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "subject": "Insurance for Vehicle {{doc.name}} will expire in 5 days!"
+}
