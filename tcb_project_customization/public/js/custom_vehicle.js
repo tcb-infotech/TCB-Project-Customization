@@ -296,6 +296,7 @@ frappe.ui.form.on('Vehicle',{
       let last_value= last_row.move_to
 
       frm.set_value('custom_vehicle_location',last_value)
+      frm.save()
   }
   }
 })

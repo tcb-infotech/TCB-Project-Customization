@@ -17,11 +17,11 @@ frappe.ui.form.on('Vehicle Log', {
         }
     },
 
-    refresh: function(frm) {
-        if (frm.doc.custom_current_location) {
-            frm.set_df_property('custom_current_location', 'read_only', 1);
-        }
-    },
+    // refresh: function(frm) {
+    //     if (frm.doc.custom_current_location) {
+    //         frm.set_df_property('custom_current_location', 'read_only', 1);
+    //     }
+    // },
 
 
     before_save: function(frm) {
@@ -38,10 +38,8 @@ frappe.ui.form.on('Vehicle Log', {
                         'You cannot submit as there are pending draft entries. Would you like to be redirected to them?',
                         function() {
                             frappe.set_route('List', 'Vehicle Log', {
-                                filters: [
-                                    ['license_plate', '=', frm.doc.license_plate],
-                                    ['docstatus', '=', 0]  
-                                ]
+                                license_plate: frm.doc.license_plate,
+                                docstatus: ["!=", 1]
                             });
                         },
                         function() {
