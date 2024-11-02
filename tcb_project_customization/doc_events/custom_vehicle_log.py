@@ -24,16 +24,16 @@ def set_vehicle_movement(doc):
 def set_current_location(license_plate):
     vehicle_doc= frappe.get_doc('Vehicle',{'license_plate':license_plate})
 
-    # last_value=None
+    last_value=None
     last_odo= None
 
     if(vehicle_doc.custom_vehicle_location_movement_history and len(vehicle_doc.custom_vehicle_location_movement_history)>0):
         last_row= vehicle_doc.custom_vehicle_location_movement_history[-1]
-        # last_value= last_row.move_to
+        last_value= last_row.move_to
         last_odo= last_row.last_odometer
 
     return {
-        # 'location':last_value,
+        'location':last_value,
         'odometer':last_odo
     }
 
@@ -78,8 +78,8 @@ def get_draft_entries(doc):
     
 
 
-@frappe.whitelist()
-def greet():
-    return frappe.db.sql("""
-    select license_plate, custom_vehicle_location, model from `tabVehicle`;
-""",as_dict=True)
+# @frappe.whitelist()
+# def greet():
+#     return frappe.db.sql("""
+#     select license_plate, custom_vehicle_location, model from `tabVehicle`;
+# """,as_dict=True)

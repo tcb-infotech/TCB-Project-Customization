@@ -9,7 +9,7 @@ frappe.ui.form.on('Vehicle Log', {
                 },
                 callback:(r)=>{
                     if(r.message){
-                        // frm.set_value('custom_current_location',r.message.location)
+                        frm.set_value('custom_current_location',r.message.location)
                         frm.set_value('last_odometer',r.message.odometer)
                     }
                 }
