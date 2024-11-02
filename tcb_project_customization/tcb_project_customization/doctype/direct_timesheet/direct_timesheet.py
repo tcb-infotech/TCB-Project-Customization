@@ -3,7 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
-from frappe.utils import getdate, time_diff_in_hours, today
+from frappe.utils import getdate, time_diff_in_hours, today, add_days
 from frappe import _
 from collections import defaultdict
 
@@ -154,6 +154,7 @@ def sync_project_details_with_timesheet(timesheet_id, project):
         timesheet_doc.supervisor_details = []
         timesheet_doc.gang_leader_details = []
         timesheet_doc.watchmen_details = []
+        timesheet_doc.time_logs = []
         
         # Sync supervisor details with correct fields
         for supervisor in project_doc.custom_supervisor_details:
@@ -170,6 +171,17 @@ def sync_project_details_with_timesheet(timesheet_id, project):
                 "user_name": gang_leader.user_name,
                 "labour_count": gang_leader.labour_count,
                 "work": gang_leader.work
+            })
+
+        # Sync gang leader details with correct fields
+        for gang_leader in project_doc.custom_gang_leader_details:
+            timesheet_doc.append("time_logs", {
+                "gang_leader": gang_leader.gang_leader_id,
+                "activity_type": "",
+                "from_time": today(),
+                "to_time": add_days(today(), 1),
+                "labour_count": gang_leader.labour_count,
+                "description":gang_leader.work,
             })
         
         # Sync watchmen details with correct fields

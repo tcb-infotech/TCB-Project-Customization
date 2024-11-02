@@ -73,8 +73,7 @@
    "fieldname": "time_logs",
    "fieldtype": "Table",
    "label": "Time Sheets",
-   "options": "Direct Timesheet Item",
-   "reqd": 1
+   "options": "Direct Timesheet Item"
   },
   {
    "fieldname": "start_date",
@@ -111,6 +110,7 @@
   {
    "fieldname": "gang_leader_details",
    "fieldtype": "Table",
+   "hidden": 1,
    "label": "Gang Leader Details",
    "options": "Project Gang Leader Item"
   },
@@ -139,7 +139,7 @@
    "link_fieldname": "custom_direct_timesheet"
   }
  ],
- "modified": "2024-10-21 12:29:01.015569",
+ "modified": "2024-10-30 12:20:27.362074",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Direct Timesheet",

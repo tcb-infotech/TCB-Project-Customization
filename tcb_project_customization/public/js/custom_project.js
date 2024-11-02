@@ -1,5 +1,19 @@
 frappe.ui.form.on("Project", {
     refresh(frm) {
+
+        frm.set_df_property('custom_supervisor_details', 'cannot_add_rows', true); // Hide add row button
+        frm.set_df_property('custom_supervisor_details', 'cannot_delete_rows', true); // Hide delete button
+        frm.set_df_property('custom_supervisor_details', 'cannot_delete_all_rows', true); // Hide delete all button
+    
+        
+        // frm.set_df_property('custom_supervisor_details', 'read_only', 1, frm.docname, 'supervisor_id', "9kr6g4vbls")
+
+        frm.fields_dict['custom_supervisor_details'].grid.wrapper.find('.grid-row').each(function(i, row) {
+            frm.set_df_property('custom_supervisor_details', 'read_only', 1, frm.docname, 'supervisor_id', row.getAttribute('data-name'));
+        });
+
+
+
         frm.set_query("supervisor_id", "custom_supervisor_details", function (doc, cdt, cdn) {
             return {
                 "filters": {
@@ -65,6 +79,12 @@ frappe.ui.form.on("Project", {
         }, "Add In Project");
     }
 });
+
+
+
+
+
+
 
 function fetchAndRenderVehicles(frm, dialog) {
     frappe.call({
@@ -535,10 +555,10 @@ function updateSupervisors(frm, dialog) {
                 },
                 callback: function (r) {
                     const supervisors = r.message;
-
-                    // Clear existing supervisors
+            
+                    // Clear existing supervisors in any case
                     frm.doc.custom_supervisor_details = [];
-
+            
                     // Add new supervisors if any exist
                     if (supervisors && supervisors.length > 0) {
                         supervisors.forEach(supervisor => {
@@ -547,25 +567,28 @@ function updateSupervisors(frm, dialog) {
                                 user_name: supervisor.employee_name
                             });
                         });
-
-                        // Save the form
-                        return frm.save()
-                            .then(() => {
-                                frappe.show_alert({
-                                    message: __('Supervisors updated successfully'),
-                                    indicator: 'green'
-                                });
-
-                                // Reload the document to refresh the view
-                                dialog.hide();
-                                frm.reload_doc();
-                            });
                     } else {
-                        return Promise.resolve();
+                        // Mark the form as dirty if there are no supervisors to trigger save
+                        frm.set_value('custom_supervisor_details', []);
+                        frm.dirty();
                     }
-
+            
+                    // Refresh the supervisor details field to update the form
+                    frm.refresh_field('custom_supervisor_details');
+            
+                    // Save the form
+                    frm.save().then(() => {
+                        frappe.show_alert({
+                            message: __('Supervisors updated successfully'),
+                            indicator: 'green'
+                        });
+            
+                        // Reload the document to refresh the view
+                        dialog.hide();
+                        frm.reload_doc();
+                    });
                 }
-            })
+            });       
 
         })
         .catch((err) => {

@@ -7,11 +7,13 @@
  "engine": "InnoDB",
  "field_order": [
   "gang_leader",
+  "user_name",
   "activity_type",
   "task",
   "from_time",
   "to_time",
   "hours",
+  "labour_count",
   "description",
   "timesheet_id"
  ],
@@ -72,12 +74,26 @@
    "label": "Timesheet ID",
    "options": "Timesheet",
    "read_only": 1
+  },
+  {
+   "fieldname": "labour_count",
+   "fieldtype": "Int",
+   "label": "Labour Count"
+  },
+  {
+   "fetch_from": "gang_leader.employee_name",
+   "fieldname": "user_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Name",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-10-18 12:25:59.206723",
+ "modified": "2024-10-30 12:19:09.225564",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Direct Timesheet Item",

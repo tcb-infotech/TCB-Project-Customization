@@ -109,12 +109,21 @@ def get_report_data(filters):
         """, ts.timesheet, as_dict=1)
         
         # Get labour and work details from Gang Leader Item
+        # labour_details = frappe.db.sql("""
+        #     SELECT 
+        #         user_name,
+        #         work,
+        #         labour_count
+        #     FROM `tabProject Gang Leader Item`
+        #     WHERE parent = %s
+        # """, ts.timesheet, as_dict=1)
+
         labour_details = frappe.db.sql("""
             SELECT 
                 user_name,
-                work,
+                description,
                 labour_count
-            FROM `tabProject Gang Leader Item`
+            FROM `tabDirect Timesheet Item`
             WHERE parent = %s
         """, ts.timesheet, as_dict=1)
         

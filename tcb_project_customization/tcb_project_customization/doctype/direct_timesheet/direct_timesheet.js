@@ -198,6 +198,7 @@ function get_project_details(frm){
 			callback: function(r) {
 				if (!r.exc) {
 					frm.refresh();
+					frm.reload_doc();
 					frappe.show_alert({
 						message: __('Project details synced successfully'),
 						indicator: 'green'
