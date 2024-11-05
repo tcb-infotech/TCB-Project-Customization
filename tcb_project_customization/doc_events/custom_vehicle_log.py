@@ -15,7 +15,8 @@ def set_vehicle_movement(doc):
             'move_from': doc.get('custom_current_location'),
             'move_to': doc.get('custom_move_to'),
             'movement_date': doc.get('date'),
-            'last_odometer': doc.get('odometer')
+            'last_odometer': doc.get('odometer'),
+            'custom_vehicle_log':doc.get('name')
         })
         
         vehicle_doc.save()
