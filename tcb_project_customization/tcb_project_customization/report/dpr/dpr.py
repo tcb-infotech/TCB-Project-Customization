@@ -136,8 +136,8 @@ def get_report_data(filters):
             if detail.labour_count:
                 labour_str.append(f"{detail.user_name}-{detail.labour_count}")
                 total_labour += detail.labour_count
-            if detail.work:
-                work_descriptions.append(detail.work)
+            if detail.description:
+                work_descriptions.append(detail.description)
         
         row = {
             "id": ts.timesheet,

@@ -25,5 +25,20 @@ frappe.query_reports["Vehicle Tracking"] = {
             "fieldtype": "Select",
             "options": "\nIn Service\nOut of Service\nMaintenance"
         }
-    ]
+    ],
+    onload: function(report) {
+        setTimeout(() => {
+            // Get the datatable instance
+            if (report.datatable && report.datatable.rowmanager) {
+                // Collapse all rows
+                report.datatable.rowmanager.collapseAllNodes();
+                
+                // Show expand all button and hide collapse all button
+                report.$report.find('[data-action="expand_all_rows"]').show();
+                report.$report.find('[data-action="collapse_all_rows"]').hide();
+            }
+        }, 300);
+    },
+
 };
+

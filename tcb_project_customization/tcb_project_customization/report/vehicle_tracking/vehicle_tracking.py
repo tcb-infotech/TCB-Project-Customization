@@ -26,10 +26,17 @@ def get_columns(filters):
             "width": 200
         },
         {
-            "label": _("Project"),
+            "label": _("Project ID"),
             "fieldname": "custom_project",
             "fieldtype": "Link",
             "options": "Project",
+            "width": 150
+        },
+        {
+            "label": _("Current Location"),
+            "fieldname": "custom_vehicle_location",
+            "fieldtype": "Link",
+            "options": "Location",
             "width": 150
         },
         {
@@ -111,6 +118,7 @@ def get_vehicle_data(filters):
             v.name,
             v.custom_project_name,
             v.custom_project,
+            v.custom_vehicle_location,
             v.make,
             v.model,
             COALESCE(
@@ -159,6 +167,9 @@ def get_conditions(filters):
         
     if filters.get("custom_project"):
         conditions.append("AND v.custom_project = %(custom_project)s")
+
+    if filters.get("custom_vehicle_location"):
+        conditions.append("AND v.custom_vehicle_location = %(custom_vehicle_location)s")
         
     if filters.get("make"):
         conditions.append("AND v.make = %(make)s")
