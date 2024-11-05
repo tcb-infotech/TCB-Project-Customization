@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"HP_MFOIhN3\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">HRC</span>\",\"col\":12}},{\"id\":\"zgtibB99bs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"w76r7p-QZM\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project\",\"col\":3}},{\"id\":\"htBz9S13i8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Warehouse\",\"col\":3}},{\"id\":\"KzOGxl_XV3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vehicle\",\"col\":3}},{\"id\":\"Zp3U08U2ug\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"9_WlaFYnGB\",\"type\":\"card\",\"data\":{\"card_name\":\"Stock Reports\",\"col\":4}},{\"id\":\"ACyhx-QwZ4\",\"type\":\"card\",\"data\":{\"card_name\":\"Vehicle Reports\",\"col\":4}}]",
+ "content": "[{\"id\":\"HP_MFOIhN3\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">HRC</span>\",\"col\":12}},{\"id\":\"zgtibB99bs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"w76r7p-QZM\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project\",\"col\":3}},{\"id\":\"htBz9S13i8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Warehouse\",\"col\":3}},{\"id\":\"KzOGxl_XV3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vehicle\",\"col\":3}},{\"id\":\"ilEeDM-Qp1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Create DPR\",\"col\":3}},{\"id\":\"yCmrp92nRm\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"DPR Report\",\"col\":3}},{\"id\":\"Zp3U08U2ug\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"9_WlaFYnGB\",\"type\":\"card\",\"data\":{\"card_name\":\"Stock Reports\",\"col\":4}},{\"id\":\"ACyhx-QwZ4\",\"type\":\"card\",\"data\":{\"card_name\":\"Vehicle Reports\",\"col\":4}}]",
  "creation": "2024-10-26 14:59:56.185833",
  "custom_blocks": [],
  "docstatus": 0,
@@ -8,7 +8,7 @@
  "for_user": "",
  "hide_custom": 0,
  "icon": "color-review-points",
- "idx": 0,
+ "idx": 1,
  "indicator_color": "",
  "is_hidden": 0,
  "label": "HRC",
@@ -109,7 +109,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-10-26 15:40:17.587855",
+ "modified": "2024-11-05 12:40:41.840474",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "HRC",
@@ -121,6 +121,21 @@
  "roles": [],
  "sequence_id": 1.0,
  "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Create DPR",
+   "link_to": "Direct Timesheet",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "DPR Report",
+   "link_to": "DPR",
+   "type": "Report"
+  },
   {
    "color": "Grey",
    "doc_view": "List",
