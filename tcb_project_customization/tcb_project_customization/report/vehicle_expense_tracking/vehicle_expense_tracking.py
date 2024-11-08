@@ -21,24 +21,24 @@ def execute(filters=None):
 def get_columns():
 	return [
 		{
-			"fieldname": "vehicle",
-			"fieldtype": "Link",
-			"label": _("Vehicle"),
-			"options": "Vehicle",
-			"width": 150,
-		},
-		{"fieldname": "make", "fieldtype": "Data", "label": _("Make"), "width": 100},
-		{"fieldname": "model", "fieldtype": "Data", "label": _("Model"), "width": 80},
-		{"fieldname": "location", "fieldtype": "Link","options":"Location", "label": _("Location"), "width": 150},
-		{"fieldname": "project", "fieldtype": "Link","options":"Project", "label": _("Project"), "width": 100},
-		{"fieldname": "project_name", "fieldtype": "Data", "label": _("Project Name"), "width": 150},
-		{
 			"fieldname": "log_name",
 			"fieldtype": "Link",
 			"label": _("Vehicle Log"),
 			"options": "Vehicle Log",
-			"width": 100,
+			"width": 150,
 		},
+		{
+			"fieldname": "vehicle",
+			"fieldtype": "Link",
+			"label": _("Vehicle Plate"),
+			"options": "Vehicle",
+			"width": 150,
+		},
+		{"fieldname": "make", "fieldtype": "Data", "label": _("Vehicle Type"), "width": 120},
+		{"fieldname": "model", "fieldtype": "Data", "label": _("Model"), "width": 120},
+		{"fieldname": "location", "fieldtype": "Link","options":"Location", "label": _("Location"), "width": 130},
+		# {"fieldname": "project", "fieldtype": "Link","options":"Project", "label": _("Project"), "width": 100},
+		# {"fieldname": "project_name", "fieldtype": "Data", "label": _("Project Name"), "width": 150},
 		{"fieldname": "odometer", "fieldtype": "Int", "label": _("Odometer Value"), "width": 120},
 		{"fieldname": "date", "fieldtype": "Date", "label": _("Date"), "width": 100},
 		{"fieldname": "fuel_qty", "fieldtype": "Float", "label": _("Fuel Qty"), "width": 80},
@@ -67,7 +67,6 @@ def get_columns():
 
 
 def get_vehicle_log_data(filters):
-	start_date, end_date = get_period_dates(filters)
 	conditions, values = get_conditions(filters)
 
 	# nosemgrep: frappe-semgrep-rules.rules.frappe-using-db-sql
@@ -84,16 +83,12 @@ def get_vehicle_log_data(filters):
 				emp.employee_name,
 				log.fuel_qty,
 				log.custom_current_location as location,
-				log.custom_current_project as project,
-				proj.project_name as project_name,
 				log.price as fuel_price,
 				log.fuel_qty * log.price as fuel_expense
 			FROM `tabVehicle` vhcl
 			INNER JOIN `tabVehicle Log` log ON vhcl.license_plate = log.license_plate
-			LEFT JOIN `tabProject` proj ON log.custom_current_project = proj.name
 			LEFT JOIN `tabEmployee` emp ON log.employee = emp.name
 			WHERE log.docstatus = 1 
-			AND date between %(start_date)s and %(end_date)s
 			{conditions}
 			ORDER BY date""",
 			values,
@@ -110,23 +105,35 @@ def get_conditions(filters):
 	conditions = ""
 
 	start_date, end_date = get_period_dates(filters)
-	values = {"start_date": start_date, "end_date": end_date}
 
-	if filters.employee:
-		conditions += " and log.employee = %(employee)s"
-		values["employee"] = filters.employee
+	if start_date and end_date:
+		conditions += "AND date between %(start_date)s and %(end_date)s"
+		values = {"start_date": start_date, "end_date": end_date}
 
-	if filters.vehicle:
-		conditions += " and vhcl.license_plate = %(vehicle)s"
-		values["vehicle"] = filters.vehicle
+		if filters.employee:
+			conditions += " and log.employee = %(employee)s"
+			values["employee"] = filters.employee
 
-	if filters.location:
-		conditions += " and log.custom_current_location = %(location)s"
-		values["location"] = filters.location
+		if filters.vehicle:
+			conditions += " and vhcl.license_plate = %(vehicle)s"
+			values["vehicle"] = filters.vehicle
 
-	if filters.project:
-		conditions += " and log.custom_current_project = %(project)s"
-		values["project"] = filters.project
+		if filters.location:
+			conditions += " and log.custom_current_location = %(location)s"
+			values["location"] = filters.location
+		
+		if filters.get("make"):
+			conditions += "AND vhcl.make Like %(make)s"
+			values["make"] = filters.make
+			
+		if filters.get("model"):
+			conditions += "AND vhcl.model Like %(model)s"
+			values["model"] = filters.model
+
+
+	# if filters.project:
+	# 	conditions += " and log.custom_current_project = %(project)s"
+	# 	values["project"] = filters.project
 
 	return conditions, values
 

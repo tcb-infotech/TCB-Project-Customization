@@ -19,19 +19,19 @@ def get_columns(filters):
             "options": "Vehicle",
             "width": 200
         },
-        {
-            "label": _("Current Project"),
-            "fieldname": "custom_project_name",
-            "fieldtype": "Data",
-            "width": 200
-        },
-        {
-            "label": _("Project ID"),
-            "fieldname": "custom_project",
-            "fieldtype": "Link",
-            "options": "Project",
-            "width": 150
-        },
+        # {
+        #     "label": _("Current Project"),
+        #     "fieldname": "custom_project_name",
+        #     "fieldtype": "Data",
+        #     "width": 200
+        # },
+        # {
+        #     "label": _("Project ID"),
+        #     "fieldname": "custom_project",
+        #     "fieldtype": "Link",
+        #     "options": "Project",
+        #     "width": 150
+        # },
         {
             "label": _("Current Location"),
             "fieldname": "custom_vehicle_location",
@@ -40,14 +40,14 @@ def get_columns(filters):
             "width": 150
         },
         {
-            "label": _("Make"),
-            "fieldname": "make",
-            "fieldtype": "Data",
-            "width": 120
-        },
-        {
             "label": _("Model"),
             "fieldname": "model",
+            "fieldtype": "Data",
+            "width": 150
+        },
+        {
+            "label": _("Make"),
+            "fieldname": "make",
             "fieldtype": "Data",
             "width": 120
         },
@@ -101,7 +101,7 @@ def get_data(filters):
                 "indent": 1,
                 # "name":  history.movement_id,  # Unique identifier for the history row
                 "name":  f"Movement-{index}",  # Unique identifier for the history row
-                "custom_project_name": "",  # Clear parent fields in child rows
+                # "custom_project_name": "",  # Clear parent fields in child rows
                 "make": "",
                 "model": "",
                 "parent_vehicle": vehicle.name
@@ -116,8 +116,6 @@ def get_vehicle_data(filters):
     query = """
         SELECT 
             v.name,
-            v.custom_project_name,
-            v.custom_project,
             v.custom_vehicle_location,
             v.make,
             v.model,
@@ -165,16 +163,16 @@ def get_conditions(filters):
     if filters.get("vehicle"):
         conditions.append("AND v.name = %(vehicle)s")
         
-    if filters.get("custom_project"):
-        conditions.append("AND v.custom_project = %(custom_project)s")
+    # if filters.get("custom_project"):
+    #     conditions.append("AND v.custom_project = %(custom_project)s")
 
     if filters.get("custom_vehicle_location"):
         conditions.append("AND v.custom_vehicle_location = %(custom_vehicle_location)s")
         
     if filters.get("make"):
-        conditions.append("AND v.make = %(make)s")
+        conditions.append("AND v.make Like %(make)s")
         
     if filters.get("model"):
-        conditions.append("AND v.model = %(model)s")
+        conditions.append("AND v.model Like %(model)s")
         
     return " ".join(conditions)

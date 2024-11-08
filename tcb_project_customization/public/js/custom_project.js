@@ -38,25 +38,25 @@ frappe.ui.form.on("Project", {
             }
         });
 
-        frm.add_custom_button(__('Vehicle'), function () {
-            let d = new frappe.ui.Dialog({
-                title: 'Vehicle Assignment',
-                fields: [
-                    {
-                        label: 'Vehicles',
-                        fieldname: 'vehicle_selection_html',
-                        fieldtype: 'HTML'
-                    }
-                ],
-                primary_action_label: 'Update',
-                primary_action(values) {
-                    updateVehicles(frm, d);
-                }
-            });
+        // frm.add_custom_button(__('Vehicle'), function () {
+        //     let d = new frappe.ui.Dialog({
+        //         title: 'Vehicle Assignment',
+        //         fields: [
+        //             {
+        //                 label: 'Vehicles',
+        //                 fieldname: 'vehicle_selection_html',
+        //                 fieldtype: 'HTML'
+        //             }
+        //         ],
+        //         primary_action_label: 'Update',
+        //         primary_action(values) {
+        //             updateVehicles(frm, d);
+        //         }
+        //     });
 
-            fetchAndRenderVehicles(frm, d);
-            d.show();
-        }, "Add In Project");
+        //     fetchAndRenderVehicles(frm, d);
+        //     d.show();
+        // }, "Add In Project");
 
         frm.add_custom_button(__('Supervisor'), function () {
             let d = new frappe.ui.Dialog({

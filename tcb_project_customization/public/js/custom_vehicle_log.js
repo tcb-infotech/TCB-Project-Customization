@@ -1,28 +1,49 @@
 // Client-side JavaScript
 frappe.ui.form.on('Vehicle Log', {
-    onload: function(frm){
-        if(frm.doc.license_plate){
-            frappe.call({
-                method:'tcb_project_customization.doc_events.custom_vehicle_log.set_current_location',
-                args:{
-                    license_plate:frm.doc.license_plate,
-                },
-                callback:(r)=>{
-                    if(r.message){
-                        frm.set_value('custom_current_location',r.message.location)
-                        frm.set_value('last_odometer',r.message.odometer)
+    // onload: function(frm){
+    //     (frm.doc.license_plate){
+    //         frappe.call({
+    //             method:'tcb_project_customization.doc_events.custom_vehicle_log.set_current_location',
+    //             args:{
+    //                 license_plate:frm.doc.license_plate,
+    //             },
+    //             callback:(r)=>{
+    //                 if(r.message){
+    //                     frm.set_value('custom_current_location',r.message.location)
+    //                     frm.set_value('last_odometer',r.message.odometer)
+    //                 }
+    //             }
+    //         })if
+    //     }
+    // },
+
+    refresh: function(frm) {
+        // if (frm.doc.custom_current_location) {
+        //     frm.set_df_property('custom_current_location', 'read_only', 1);
+        // }
+        if(frm.doc.custom_current_location){
+            frm.set_query('custom_move_to', ()=>{
+                return {
+                    "filters" : {
+                        "location_name": frm.doc.custom_current_location,
                     }
                 }
             })
         }
     },
 
-    // refresh: function(frm) {
-    //     if (frm.doc.custom_current_location) {
-    //         frm.set_df_property('custom_current_location', 'read_only', 1);
-    //     }
-    // },
-
+    license_plate: function(frm){
+        frm.set_value('custom_move_to',"");
+    },
+    custom_current_location: function(frm){
+        frm.set_query('custom_move_to', ()=>{
+            return {
+                "filters" : {
+                    "location_name": ["!=", frm.doc.custom_current_location],
+                }
+            }
+        })
+    },
 
     before_save: function(frm) {
         frappe.call({

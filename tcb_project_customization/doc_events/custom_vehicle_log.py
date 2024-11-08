@@ -10,6 +10,8 @@ def set_vehicle_movement(doc):
     
     vehicle_doc = frappe.get_doc('Vehicle', {'license_plate': doc.get('license_plate')})
     
+    vehicle_doc.custom_vehicle_location = doc.get('custom_current_location')
+
     if vehicle_doc:
         vehicle_doc.append('custom_vehicle_location_movement_history', {
             'move_from': doc.get('custom_current_location'),
@@ -29,7 +31,7 @@ def set_vehicle_movement(doc):
 def set_current_location(license_plate):
     vehicle_doc= frappe.get_doc('Vehicle',{'license_plate':license_plate})
 
-    last_value=None
+    last_value=None 
     last_odo= None
 
     if(vehicle_doc.custom_vehicle_location_movement_history and len(vehicle_doc.custom_vehicle_location_movement_history)>0):
