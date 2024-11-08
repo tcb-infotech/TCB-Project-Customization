@@ -416,7 +416,7 @@ def get_stock_ledger_entries(filters, items):
     sle = frappe.qb.DocType("Stock Ledger Entry")
     se = frappe.qb.DocType("Stock Entry")
     warehouse = frappe.qb.DocType("Warehouse")
-    subcontractor = frappe.qb.DocType("Subcontractor") 
+    subcontractor = frappe.qb.DocType("Employee") 
     project = frappe.qb.DocType("Project") 
     
     query = (
@@ -450,7 +450,7 @@ def get_stock_ledger_entries(filters, items):
             warehouse.custom_project.as_('project'),
             project.project_name.as_("project_name"),  # Add project name
             warehouse.custom_subcontractor.as_("subcontractor"),
-            subcontractor.subcontractor_name.as_("subcontractor_name"),
+            warehouse.custom_subcontractor_name.as_("subcontractor_name"),
             se.stock_entry_type,
             se.custom_description_about_entry.as_('description_about_entry'),
         )

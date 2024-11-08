@@ -80,10 +80,17 @@ frappe.query_reports["Stock Ledger HRC"] = {
 			fieldtype: "Data",
 		},
 		{
-			fieldname: "project",
-			label: __("Project"),
+			fieldname: "subcontractor",
+			label: __("Subcontractor"),
 			fieldtype: "Link",
-			options: "Project",
+			options: "Employee",
+			get_query: function () {
+				return{
+					"filters":{
+						"designation": "Gang Leader"
+					}
+				}
+			}
 		},
 		{
 			fieldname: "stock_entry_type",
@@ -92,11 +99,11 @@ frappe.query_reports["Stock Ledger HRC"] = {
 			options: "Stock Entry Type",
 		},
 		{
-			fieldname: "subcontractor",
-			label: __("Subcontractor"),
+			fieldname: "project",
+			label: __("Project"),
 			fieldtype: "Link",
-			options: "Subcontractor",
-		},
+			options: "Project",
+		},	
 		{
 			fieldname: "include_uom",
 			label: __("Include UOM"),
