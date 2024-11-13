@@ -1,16 +1,16 @@
 frappe.ui.form.on("Project", {
     refresh(frm) {
 
-        frm.set_df_property('custom_supervisor_details', 'cannot_add_rows', true); // Hide add row button
-        frm.set_df_property('custom_supervisor_details', 'cannot_delete_rows', true); // Hide delete button
-        frm.set_df_property('custom_supervisor_details', 'cannot_delete_all_rows', true); // Hide delete all button
+        // frm.set_df_property('custom_supervisor_details', 'cannot_add_rows', true); // Hide add row button
+        // frm.set_df_property('custom_supervisor_details', 'cannot_delete_rows', true); // Hide delete button
+        // frm.set_df_property('custom_supervisor_details', 'cannot_delete_all_rows', true); // Hide delete all button
     
         
         // frm.set_df_property('custom_supervisor_details', 'read_only', 1, frm.docname, 'supervisor_id', "9kr6g4vbls")
 
-        frm.fields_dict['custom_supervisor_details'].grid.wrapper.find('.grid-row').each(function(i, row) {
-            frm.set_df_property('custom_supervisor_details', 'read_only', 1, frm.docname, 'supervisor_id', row.getAttribute('data-name'));
-        });
+        // frm.fields_dict['custom_supervisor_details'].grid.wrapper.find('.grid-row').each(function(i, row) {
+        //     frm.set_df_property('custom_supervisor_details', 'read_only', 1, frm.docname, 'supervisor_id', row.getAttribute('data-name'));
+        // });
 
 
 
@@ -58,25 +58,25 @@ frappe.ui.form.on("Project", {
         //     d.show();
         // }, "Add In Project");
 
-        frm.add_custom_button(__('Supervisor'), function () {
-            let d = new frappe.ui.Dialog({
-                title: 'Supervisor Assignment',
-                fields: [
-                    {
-                        label: 'Supervisors',
-                        fieldname: 'supervisor_selection_html',
-                        fieldtype: 'HTML'
-                    }
-                ],
-                primary_action_label: 'Update',
-                primary_action(values) {
-                    updateSupervisors(frm, d);
-                }
-            });
+        // frm.add_custom_button(__('Supervisor'), function () {
+        //     let d = new frappe.ui.Dialog({
+        //         title: 'Supervisor Assignment',
+        //         fields: [
+        //             {
+        //                 label: 'Supervisors',
+        //                 fieldname: 'supervisor_selection_html',
+        //                 fieldtype: 'HTML'
+        //             }
+        //         ],
+        //         primary_action_label: 'Update',
+        //         primary_action(values) {
+        //             updateSupervisors(frm, d);
+        //         }
+        //     });
 
-            fetchAndRenderSupervisors(frm, d);
-            d.show();
-        }, "Add In Project");
+        //     fetchAndRenderSupervisors(frm, d);
+        //     d.show();
+        // }, "Add In Project");
     }
 });
 

@@ -64,7 +64,7 @@ def get_columns():
             "label": _("Remark"),
             "fieldname": "remark",
             "fieldtype": "Data",
-            "width": 200
+            "width": 500
         }
     ]
 
@@ -145,7 +145,7 @@ def get_report_data(filters):
             "supervisor": "/".join([s.user_name for s in supervisors]),
             "watchmen": "/".join([w.user_name for w in watchmen]),
             "labour": ", ".join(labour_str),
-            "work": "\n".join(work_descriptions),
+            "work": " / ".join(work_descriptions),
             "total_staff": (
                 len(supervisors) +
                 len(watchmen) +

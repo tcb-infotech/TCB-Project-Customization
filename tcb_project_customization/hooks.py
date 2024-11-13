@@ -249,11 +249,11 @@ doc_events = {
 
 
 
-fixtures=[
-    {
-        "dt": "Role Profile",
-        "filters":[
-            ['name','=','Project Mgt']
-        ]
-    }
-]
+# fixtures=[
+#     {
+#         "dt": "Role Profile",
+#         "filters":[
+#             ['name','=','Project Mgt']
+#         ]
+#     }
+# ]
