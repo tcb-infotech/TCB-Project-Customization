@@ -7,6 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "type_name",
+  "is_active",
   "description"
  ],
  "fields": [
@@ -20,11 +21,17 @@
    "fieldname": "description",
    "fieldtype": "Text",
    "label": "Description"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Active"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-06 11:07:26.232829",
+ "modified": "2024-11-09 12:17:10.372086",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Vehicle Type",

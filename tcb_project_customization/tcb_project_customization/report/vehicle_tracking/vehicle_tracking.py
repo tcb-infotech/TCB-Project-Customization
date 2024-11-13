@@ -46,8 +46,8 @@ def get_columns(filters):
             "width": 150
         },
         {
-            "label": _("Make"),
-            "fieldname": "make",
+            "label": _("custom_vehicle_type"),
+            "fieldname": "custom_vehicle_type",
             "fieldtype": "Data",
             "width": 120
         },
@@ -87,7 +87,7 @@ def get_data(filters):
         # Add parent row (vehicle)
         vehicle.update({
             "indent": 0,
-            "is_group": 1,  # This makes it expandable
+            "is_group": 1,  # This custom_vehicle_types it expandable
             "vehicle_id": vehicle.name  # Store vehicle ID for child rows
         })
         data.append(vehicle)
@@ -102,7 +102,7 @@ def get_data(filters):
                 # "name":  history.movement_id,  # Unique identifier for the history row
                 "name":  f"Movement-{index}",  # Unique identifier for the history row
                 # "custom_project_name": "",  # Clear parent fields in child rows
-                "make": "",
+                "custom_vehicle_type": "",
                 "model": "",
                 "parent_vehicle": vehicle.name
             })
@@ -117,7 +117,7 @@ def get_vehicle_data(filters):
         SELECT 
             v.name,
             v.custom_vehicle_location,
-            v.make,
+            v.custom_vehicle_type,
             v.model,
             COALESCE(
                 (SELECT last_odometer 
@@ -169,8 +169,8 @@ def get_conditions(filters):
     if filters.get("custom_vehicle_location"):
         conditions.append("AND v.custom_vehicle_location = %(custom_vehicle_location)s")
         
-    if filters.get("make"):
-        conditions.append("AND v.make Like %(make)s")
+    if filters.get("custom_vehicle_type"):
+        conditions.append("AND v.custom_vehicle_type = %(custom_vehicle_type)s")
         
     if filters.get("model"):
         conditions.append("AND v.model Like %(model)s")

@@ -34,7 +34,7 @@ def get_columns():
 			"options": "Vehicle",
 			"width": 150,
 		},
-		{"fieldname": "make", "fieldtype": "Data", "label": _("Vehicle Type"), "width": 120},
+		{"fieldname": "custom_vehicle_type", "fieldtype": "Data", "label": _("Vehicle Type"), "width": 120},
 		{"fieldname": "model", "fieldtype": "Data", "label": _("Model"), "width": 120},
 		{"fieldname": "location", "fieldtype": "Link","options":"Location", "label": _("Location"), "width": 130},
 		# {"fieldname": "project", "fieldtype": "Link","options":"Project", "label": _("Project"), "width": 100},
@@ -74,7 +74,7 @@ def get_vehicle_log_data(filters):
 		f"""
 			SELECT 
 				vhcl.license_plate as vehicle,
-				vhcl.make,
+				vhcl.custom_vehicle_type,
 				vhcl.model,
 				log.name as log_name,
 				log.odometer,
@@ -122,9 +122,9 @@ def get_conditions(filters):
 			conditions += " and log.custom_current_location = %(location)s"
 			values["location"] = filters.location
 		
-		if filters.get("make"):
-			conditions += "AND vhcl.make Like %(make)s"
-			values["make"] = filters.make
+		if filters.get("custom_vehicle_type"):
+			conditions += "AND vhcl.custom_vehicle_type = %(custom_vehicle_type)s"
+			values["custom_vehicle_type"] = filters.custom_vehicle_type
 			
 		if filters.get("model"):
 			conditions += "AND vhcl.model Like %(model)s"

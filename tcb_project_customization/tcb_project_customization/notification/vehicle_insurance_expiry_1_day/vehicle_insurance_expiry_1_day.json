@@ -11,16 +11,16 @@
  "event": "Days Before",
  "idx": 0,
  "is_standard": 1,
- "message": "Add your message here",
+ "message": "<p>Add your message here</p>\n",
  "message_type": "Markdown",
- "modified": "2024-10-30 13:33:26.173231",
+ "modified": "2024-11-12 12:19:15.491368",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Vehicle Insurance Expiry 1 day",
  "owner": "Administrator",
  "recipients": [
   {
-   "receiver_by_role": "All"
+   "receiver_by_role": "Administrator"
   }
  ],
  "send_system_notification": 1,

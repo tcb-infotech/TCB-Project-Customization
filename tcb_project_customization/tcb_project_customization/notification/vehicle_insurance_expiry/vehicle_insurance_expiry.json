@@ -14,14 +14,14 @@
  "is_standard": 1,
  "message": "<p>Insurance for Vehicle {{doc.name}} expires in 10 days</p>\n",
  "message_type": "Markdown",
- "modified": "2024-10-30 13:34:17.109444",
+ "modified": "2024-11-12 12:19:02.106653",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Vehicle Insurance Expiry",
  "owner": "Administrator",
  "recipients": [
   {
-   "receiver_by_role": "All"
+   "receiver_by_role": "Administrator"
   }
  ],
  "send_system_notification": 0,
