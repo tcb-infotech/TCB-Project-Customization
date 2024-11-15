@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"HP_MFOIhN3\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">HRC</span>\",\"col\":12}},{\"id\":\"zgtibB99bs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"w76r7p-QZM\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project\",\"col\":3}},{\"id\":\"htBz9S13i8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Warehouse\",\"col\":3}},{\"id\":\"KzOGxl_XV3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vehicle\",\"col\":3}},{\"id\":\"ilEeDM-Qp1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Create DPR\",\"col\":3}},{\"id\":\"yCmrp92nRm\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"DPR Report\",\"col\":3}},{\"id\":\"Zp3U08U2ug\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"9_WlaFYnGB\",\"type\":\"card\",\"data\":{\"card_name\":\"Stock Reports\",\"col\":4}},{\"id\":\"ACyhx-QwZ4\",\"type\":\"card\",\"data\":{\"card_name\":\"Vehicle Reports\",\"col\":4}}]",
+ "content": "[{\"id\":\"HP_MFOIhN3\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 24px;\\\">Your Shortcuts</span>\",\"col\":12}},{\"id\":\"zgtibB99bs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"w76r7p-QZM\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Project\",\"col\":3}},{\"id\":\"htBz9S13i8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Warehouse\",\"col\":3}},{\"id\":\"KzOGxl_XV3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vehicle\",\"col\":3}},{\"id\":\"ilEeDM-Qp1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Create DPR\",\"col\":3}},{\"id\":\"yCmrp92nRm\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"DPR Report\",\"col\":3}},{\"id\":\"Zp3U08U2ug\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"9_WlaFYnGB\",\"type\":\"card\",\"data\":{\"card_name\":\"Stock Reports\",\"col\":5}},{\"id\":\"ACyhx-QwZ4\",\"type\":\"card\",\"data\":{\"card_name\":\"Vehicle Reports\",\"col\":5}},{\"id\":\"3VAM9Hf3yQ\",\"type\":\"card\",\"data\":{\"card_name\":\"Create Purchase\",\"col\":5}},{\"id\":\"AJknfZWxyC\",\"type\":\"card\",\"data\":{\"card_name\":\"Create Sales\",\"col\":5}}]",
  "creation": "2024-10-26 14:59:56.185833",
  "custom_blocks": [],
  "docstatus": 0,
@@ -118,9 +118,117 @@
    "onboard": 0,
    "report_ref_doctype": "Vehicle",
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Create Sales",
+   "link_count": 4,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Estimation",
+   "link_count": 0,
+   "link_to": "Estimation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Quotation",
+   "link_count": 0,
+   "link_to": "Quotation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sales Order",
+   "link_count": 0,
+   "link_to": "Sales Order",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sales Invoice",
+   "link_count": 0,
+   "link_to": "Sales Invoice",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Create Purchase",
+   "link_count": 5,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Request for Quotation",
+   "link_count": 0,
+   "link_to": "Request for Quotation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Purchase Order",
+   "link_count": 0,
+   "link_to": "Purchase Order",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Purchase Receipt",
+   "link_count": 0,
+   "link_to": "Purchase Receipt",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Purchase Invoice",
+   "link_count": 0,
+   "link_to": "Purchase Invoice",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Material Request",
+   "link_count": 0,
+   "link_to": "Material Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2024-11-12 12:24:45.187043",
+ "modified": "2024-11-14 17:12:21.962352",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "HRC",

@@ -21,38 +21,38 @@ def get_columns():
             "fieldname": "id",
             "fieldtype": "Link",
             "options": "Direct Timesheet",
-            "width": 150
+            "width": 200
         },
         {
-            "label": _("Site"),
+            "label": _("Site (Project)"),
             "fieldname": "site",
             "fieldtype": "Link",
             "options": "Project",
-            "width": 120
+            "width": 200
         },
         {
             "label": _("Supervisor"),
             "fieldname": "supervisor",
             "fieldtype": "Data",
-            "width": 200
+            "width": 300
         },
         {
             "label": _("Watchmen"),
             "fieldname": "watchmen",
             "fieldtype": "Data",
-            "width": 200
+            "width": 300
         },
         {
             "label": _("Labour"),
             "fieldname": "labour",
             "fieldtype": "Data",
-            "width": 200
+            "width": 300
         },
         {
             "label": _("Work"),
             "fieldname": "work",
             "fieldtype": "Small Text",
-            "width": 250
+            "width": 400
         },
         {
             "label": _("Total Staff"),
@@ -79,73 +79,79 @@ def get_report_data(filters):
             `tabDirect Timesheet` dt
         WHERE 
             dt.company = %(company)s
-            AND dt.start_date = %(date)s 
+            AND dt.docstatus = 1
     """
-            # dt.docstatus = 1
-            # AND dt.end_date >= %(date)s
-            # AND dt.project = %(project)s
 
     if filters.get("project"):
         query += "AND dt.project = %(project)s"
         filters["project"] = filters.project
+
+    if filters.get("date"):
+        query += "AND dt.start_date = %(date)s"
+        filters["start_date"] = filters.date
+
 
     timesheets = frappe.db.sql(query, filters, as_dict=True)
 
 
     data = []
     for ts in timesheets:
-        # Get supervisor details
-        supervisors = frappe.db.sql("""
-            SELECT user_name 
-            FROM `tabProject Supervisor Item`
-            WHERE parent = %s
-        """, ts.timesheet, as_dict=1)
-        
-        # Get watchmen details
-        watchmen = frappe.db.sql("""
-            SELECT user_name 
-            FROM `tabProject Watchmen Item`
-            WHERE parent = %s
-        """, ts.timesheet, as_dict=1)
-        
-        # Get labour and work details from Gang Leader Item
-        # labour_details = frappe.db.sql("""
-        #     SELECT 
-        #         user_name,
-        #         work,
-        #         labour_count
-        #     FROM `tabProject Gang Leader Item`
-        #     WHERE parent = %s
-        # """, ts.timesheet, as_dict=1)
-
-        labour_details = frappe.db.sql("""
+        # Get staff details grouped by designation
+        staff_query = """
             SELECT 
-                user_name,
+                employee_name,
+                designation,
+                activity_type,
+                task,
+                labour_count,
                 description,
-                labour_count
-            FROM `tabDirect Timesheet Item`
-            WHERE parent = %s
-        """, ts.timesheet, as_dict=1)
+                shift,
+                is_gang_leader_present
+            FROM 
+                `tabDirect Timesheet Staff Item`
+            WHERE 
+                parent = %s
+            ORDER BY 
+                designation, employee_name
+        """
         
-        # Format labour details and collect work descriptions
-        labour_str = []
-        work_descriptions = []
+        staff_details = frappe.db.sql(staff_query, ts.timesheet, as_dict=1)
+        
+        # Initialize dictionaries to store grouped data
+        supervisors = []
+        watchmen = []
+        labour_details = []
+        work_descriptions = set()  # Using set to avoid duplicates
         total_labour = 0
         
-        for detail in labour_details:
-            if detail.labour_count:
-                labour_str.append(f"{detail.user_name}-{detail.labour_count}")
-                total_labour += detail.labour_count
-            if detail.description:
-                work_descriptions.append(detail.description)
+        # Process staff details based on designation
+        for staff in staff_details:
+            if staff.designation == "Supervisor":
+                supervisors.append(staff.employee_name)
+            elif staff.designation == "Watchman":
+                watchmen.append(f"{staff.employee_name} ({staff.shift})")
+            elif staff.designation == "Gang Leader":
+                # Only add to labour details if labour count is greater than 0
+                if staff.labour_count and staff.labour_count > 0:
+                    labour_details.append(f"{staff.employee_name}-{staff.labour_count}")
+                    total_labour += staff.labour_count
+                else:
+                    labour_details.append(f"{staff.employee_name}")
+                
+                if(staff.is_gang_leader_present):
+                        total_labour += 1   # add one for the gang leader if present
+                    
+                # Only add work descriptions from Gang Leaders
+                if staff.description:
+                    work_descriptions.add(staff.description)
         
         row = {
             "id": ts.timesheet,
             "site": ts.site,
-            "supervisor": "/".join([s.user_name for s in supervisors]),
-            "watchmen": "/".join([w.user_name for w in watchmen]),
-            "labour": ", ".join(labour_str),
-            "work": " / ".join(work_descriptions),
+            "supervisor": " / ".join(supervisors) if supervisors else "",
+            "watchmen": " / ".join(watchmen) if watchmen else "",
+            "labour": ", ".join(labour_details) if labour_details else "",  # Will be empty if no labour_details
+            "work": " / ".join(work_descriptions) if work_descriptions else "",  # Only Gang Leader work descriptions
             "total_staff": (
                 len(supervisors) +
                 len(watchmen) +

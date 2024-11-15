@@ -1,0 +1,137 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-11-14 12:32:46.970656",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "employee",
+  "employee_name",
+  "column_break_jnpi",
+  "designation",
+  "is_gang_leader_present",
+  "section_break_rone",
+  "activity_type",
+  "column_break_kxaq",
+  "task",
+  "section_break_eyqr",
+  "labour_count",
+  "column_break_inuq",
+  "shift",
+  "section_break_qlvf",
+  "description",
+  "timesheet_id"
+ ],
+ "fields": [
+  {
+   "fieldname": "activity_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Activity Type",
+   "options": "Activity Type"
+  },
+  {
+   "fieldname": "task",
+   "fieldtype": "Link",
+   "label": "Task",
+   "options": "Task"
+  },
+  {
+   "depends_on": "eval:doc.designation == \"Gang Leader\"",
+   "fieldname": "labour_count",
+   "fieldtype": "Int",
+   "label": "Labour Count"
+  },
+  {
+   "columns": 2,
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Description"
+  },
+  {
+   "fieldname": "timesheet_id",
+   "fieldtype": "Data",
+   "label": "Timesheet ID",
+   "options": "Timesheet",
+   "read_only": 1
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.designation",
+   "fieldname": "designation",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Designation",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.default_shift",
+   "fieldname": "shift",
+   "fieldtype": "Data",
+   "label": "Shift",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_jnpi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_rone",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_kxaq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_eyqr",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_inuq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_qlvf",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "1",
+   "depends_on": "eval:doc.designation == \"Gang Leader\"",
+   "fieldname": "is_gang_leader_present",
+   "fieldtype": "Check",
+   "label": "Is Gang Leader Present ?"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-11-14 15:43:41.446868",
+ "modified_by": "Administrator",
+ "module": "TCB Project Customization",
+ "name": "Direct Timesheet Staff Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

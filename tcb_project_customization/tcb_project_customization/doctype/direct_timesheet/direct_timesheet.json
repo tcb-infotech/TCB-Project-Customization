@@ -16,6 +16,7 @@
   "start_date",
   "end_date",
   "section_break_srld",
+  "staff_details",
   "time_logs",
   "project_details_section",
   "supervisor_details",
@@ -67,19 +68,21 @@
   },
   {
    "fieldname": "section_break_srld",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Staff Details"
   },
   {
    "fieldname": "time_logs",
    "fieldtype": "Table",
+   "hidden": 1,
    "label": "Time Sheets",
    "options": "Direct Timesheet Item"
   },
   {
+   "default": "Today",
    "fieldname": "start_date",
    "fieldtype": "Date",
    "label": "Start Date",
-   "options": "Today",
    "read_only": 1
   },
   {
@@ -99,11 +102,13 @@
    "collapsible": 1,
    "fieldname": "project_details_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Project Details"
   },
   {
    "fieldname": "supervisor_details",
    "fieldtype": "Table",
+   "hidden": 1,
    "label": "Supervisor Details",
    "options": "Project Supervisor Item"
   },
@@ -117,6 +122,7 @@
   {
    "fieldname": "watchmen_details",
    "fieldtype": "Table",
+   "hidden": 1,
    "label": "Watchmen Details",
    "options": "Project Watchmen Item"
   },
@@ -129,6 +135,12 @@
    "fieldname": "remarks",
    "fieldtype": "Long Text",
    "label": "remarks"
+  },
+  {
+   "fieldname": "staff_details",
+   "fieldtype": "Table",
+   "label": "Staff Details",
+   "options": "Direct Timesheet Staff Item"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -139,7 +151,7 @@
    "link_fieldname": "custom_direct_timesheet"
   }
  ],
- "modified": "2024-10-30 12:20:27.362074",
+ "modified": "2024-11-14 13:54:53.992998",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Direct Timesheet",
