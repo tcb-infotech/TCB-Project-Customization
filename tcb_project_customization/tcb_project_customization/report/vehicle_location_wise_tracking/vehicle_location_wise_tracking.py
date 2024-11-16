@@ -222,36 +222,6 @@ def get_columns():
             "width": 100
         })
     
-    # Add detail columns for the drill-down view
-    detail_columns = [
-        {
-            "fieldname": "vehicle_type",
-            "label": _("Vehicle Type"),
-            "fieldtype": "Link",
-            "options": "Vehicle Type",
-            "width": 130
-        },
-        {
-            "fieldname": "model",
-            "label": _("Model"),
-            "fieldtype": "Data",
-            "width": 150
-        },
-        {
-            "fieldname": "license_plate",
-            "label": _("License Plate"),
-            "fieldtype": "Data",
-            "width": 140
-        },
-        {
-            "fieldname": "chassis_no",
-            "label": _("Chassis No"),
-            "fieldtype": "Data",
-            "width": 150
-        },
-    ]
-    
-    columns.extend(detail_columns)
     return columns
 
 def get_data(filters):
@@ -287,10 +257,8 @@ def get_data(filters):
             )
             row[frappe.scrub(type_name.type_name)] = count
             location_total_vehicles += count
-        
-
+            
         row["name"] = f"{location.name} - {location_total_vehicles}"
-        
         data.append(row)
         
         # Get and add vehicle details for this location
@@ -300,24 +268,19 @@ def get_data(filters):
             fields=[
                 "name",
                 "custom_vehicle_type as vehicle_type",
-                "model",
-                "license_plate",
-                "chassis_no",
             ]
         )
         
         # Add individual vehicle rows with indent
         for vehicle in vehicles:
+            # Get the vehicle type name
+            vehicle_type_name = frappe.get_value("Vehicle Type", vehicle.vehicle_type, "type_name")
             vehicle_row = {
-                "name": vehicle.name,
-                "vehicle_type": vehicle.vehicle_type,
-                "model": vehicle.model,
-                "license_plate": vehicle.license_plate,
-                "chassis_no": vehicle.chassis_no,
+                "name": f"{vehicle_type_name} - <a href='/app/vehicle/{vehicle.name}'>{vehicle.name}</a>",
                 "indent": 1
             }
             data.append(vehicle_row)
-    
+            
     return data
 
 def get_vehicle_details(location):
@@ -327,9 +290,6 @@ def get_vehicle_details(location):
         filters={"custom_vehicle_location": location},
         fields=[
             "name",
-            "custom_vehicle_type",
-            "model",
-            "license_plate",
-            "chassis_no",
+            "custom_vehicle_type"
         ]
     )

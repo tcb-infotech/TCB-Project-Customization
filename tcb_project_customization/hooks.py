@@ -50,7 +50,10 @@ doctype_js = {
     "Vehicle Log": "public/js/custom_vehicle_log.js",
     "Purchase Order": "public/js/custom_po.js",
     "Warehouse": "public/js/custom_warehouse.js",
-    "Timesheet": "public/js/custom_timesheet.js",
+    'Purchase Invoice':'public/js/custom_purchase_invoice.js',
+    'Sales Order':'public/js/custom_sales_order.js',
+    'Sales Invoice':'public/js/custom_sales_invoice.js',
+    'Quotation':'public/js/custom_quotation.js'
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -149,6 +152,9 @@ doc_events = {
 	"Project": {
 		"validate": "tcb_project_customization.doc_events.project.validate",
 	},
+    'Vehicle':{
+        'validate':'tcb_project_customization.doc_events.custom_vehicle.validate'
+    }
 }
 
 # Scheduled Tasks

@@ -46,7 +46,7 @@ def get_columns(filters):
             "width": 150
         },
         {
-            "label": _("custom_vehicle_type"),
+            "label": _("Vehicle Type"),
             "fieldname": "custom_vehicle_type",
             "fieldtype": "Data",
             "width": 120
@@ -56,6 +56,30 @@ def get_columns(filters):
             "fieldname": "last_odometer",
             "fieldtype": "Float",
             "width": 150
+        },
+        {
+            "label": _("Insurance Policy Number"),
+            "fieldname": "policy_no",
+            "fieldtype": "Data",
+            "width": 180
+        },
+        {
+            "label": _("Insurance Start Date"),
+            "fieldname": "start_date",
+            "fieldtype": "Date",
+            "width": 180
+        },
+        {
+            "label": _("Insurance End Date"),
+            "fieldname": "end_date",
+            "fieldtype": "Date",
+            "width": 180
+        },
+        {
+            "label": _("PUC End Date"),
+            "fieldname": "custom_puc_end_date",
+            "fieldtype": "Date",
+            "width": 180
         },
         {
             "label": _("Move From"),
@@ -74,9 +98,16 @@ def get_columns(filters):
         {
             "label": _("Movement Date"),
             "fieldname": "movement_date",
-            "fieldtype": "Datetime",
+            "fieldtype": "Date",
+            "width": 180
+        },
+        {
+            "label": _("Remarks"),
+            "fieldname": "custom_remark_",
+            "fieldtype": "Data",
             "width": 180
         }
+
     ]
 
 def get_data(filters):
@@ -119,6 +150,11 @@ def get_vehicle_data(filters):
             v.custom_vehicle_location,
             v.custom_vehicle_type,
             v.model,
+            v.policy_no,
+            v.start_date,
+            v.end_date,
+            v.custom_puc_end_date,
+            v.custom_remark_,
             COALESCE(
                 (SELECT last_odometer 
                  FROM `tabVehicle Location History Item` vh 
