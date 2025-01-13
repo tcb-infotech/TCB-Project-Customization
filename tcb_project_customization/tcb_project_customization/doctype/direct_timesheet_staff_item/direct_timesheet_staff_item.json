@@ -16,11 +16,12 @@
   "column_break_kxaq",
   "task",
   "section_break_eyqr",
-  "labour_count",
+  "column_break_akmo",
   "column_break_inuq",
   "shift",
   "section_break_qlvf",
   "description",
+  "labour_count",
   "timesheet_id"
  ],
  "fields": [
@@ -39,9 +40,10 @@
    "options": "Task"
   },
   {
-   "depends_on": "eval:doc.designation == \"Gang Leader\"",
+   "depends_on": "eval:doc.designation == \"Gangleader\"",
    "fieldname": "labour_count",
    "fieldtype": "Int",
+   "in_list_view": 1,
    "label": "Labour Count"
   },
   {
@@ -59,6 +61,7 @@
    "read_only": 1
   },
   {
+   "columns": 2,
    "fieldname": "employee",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -68,6 +71,7 @@
    "reqd": 1
   },
   {
+   "columns": 2,
    "fetch_from": "employee.employee_name",
    "fieldname": "employee_name",
    "fieldtype": "Data",
@@ -76,6 +80,7 @@
    "read_only": 1
   },
   {
+   "columns": 2,
    "fetch_from": "employee.designation",
    "fieldname": "designation",
    "fieldtype": "Data",
@@ -120,12 +125,16 @@
    "fieldname": "is_gang_leader_present",
    "fieldtype": "Check",
    "label": "Is Gang Leader Present ?"
+  },
+  {
+   "fieldname": "column_break_akmo",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-11-14 15:43:41.446868",
+ "modified": "2025-01-08 10:51:28.415475",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Direct Timesheet Staff Item",

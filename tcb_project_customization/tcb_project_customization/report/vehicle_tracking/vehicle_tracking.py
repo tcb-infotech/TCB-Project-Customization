@@ -58,6 +58,12 @@ def get_columns(filters):
             "width": 150
         },
         {
+            "label":"Insurance Company",
+            "fieldname":"insurance_company",
+            "fieldtype":"Data",
+            "width":150
+        },
+        {
             "label": _("Insurance Policy Number"),
             "fieldname": "policy_no",
             "fieldtype": "Data",
@@ -80,6 +86,24 @@ def get_columns(filters):
             "fieldname": "custom_puc_end_date",
             "fieldtype": "Date",
             "width": 180
+        },
+        {
+            "label":"Owner",
+            "fieldname":"custom_owner",
+            "fieldtype":"Data",
+            "width":150
+        },
+        {
+            "label":"Chassis No",
+            "fieldname":"chassis_no",
+            "fieldtype":"Data",
+            "width":200
+        },
+        {
+            "label":"Engine No",
+            "fieldname":"custom_engine_no",
+            "fieldtype":"Data",
+            "width":200
         },
         {
             "label": _("Move From"),
@@ -115,7 +139,6 @@ def get_data(filters):
     vehicles = get_vehicle_data(filters)
     
     for vehicle in vehicles:
-        # Add parent row (vehicle)
         vehicle.update({
             "indent": 0,
             "is_group": 1,  # This custom_vehicle_types it expandable
@@ -123,16 +146,15 @@ def get_data(filters):
         })
         data.append(vehicle)
         
-        # Get and add movement history as child rows
         movement_history = get_movement_history(vehicle.name)
         index = 0
         for history in movement_history:
             index += 1
             history.update({
                 "indent": 1,
-                # "name":  history.movement_id,  # Unique identifier for the history row
-                "name":  f"Movement-{index}",  # Unique identifier for the history row
-                # "custom_project_name": "",  # Clear parent fields in child rows
+                # "name":  history.movement_id,
+                "name":  f"Movement-{index}",
+                # "custom_project_name": "", 
                 "custom_vehicle_type": "",
                 "model": "",
                 "parent_vehicle": vehicle.name
@@ -150,10 +172,14 @@ def get_vehicle_data(filters):
             v.custom_vehicle_location,
             v.custom_vehicle_type,
             v.model,
+            v.insurance_company,
             v.policy_no,
             v.start_date,
             v.end_date,
             v.custom_puc_end_date,
+            v.custom_owner,
+            v.chassis_no,
+            v.custom_engine_no,
             v.custom_remark_,
             COALESCE(
                 (SELECT last_odometer 

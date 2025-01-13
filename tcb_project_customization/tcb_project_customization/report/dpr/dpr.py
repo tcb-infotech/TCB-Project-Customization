@@ -1,7 +1,6 @@
 # Copyright (c) 2024, AjayRaj Mahiwal and contributors
 # For license information, please see license.txt
 
-
 import frappe
 from frappe import _
 
@@ -31,9 +30,21 @@ def get_columns():
             "width": 200
         },
         {
-            "label": _("Supervisor"),
-            "fieldname": "supervisor",
-            "fieldtype": "Data",
+            "label": _("Supervisor and Work"),
+            "fieldname": "supervisor_work",
+            "fieldtype": "Small Text",
+            "width": 300
+        },
+        {
+            "label": _("Operator and Work"),
+            "fieldname": "operator_work",
+            "fieldtype": "Small Text",
+            "width": 300
+        },
+        {
+            "label": _("Gang Leader and Work"),
+            "fieldname": "gang_leader_work",
+            "fieldtype": "Small Text",
             "width": 300
         },
         {
@@ -43,16 +54,10 @@ def get_columns():
             "width": 300
         },
         {
-            "label": _("Labour"),
+            "label": _("Labour Count"),
             "fieldname": "labour",
-            "fieldtype": "Data",
-            "width": 300
-        },
-        {
-            "label": _("Work"),
-            "fieldname": "work",
-            "fieldtype": "Small Text",
-            "width": 400
+            "fieldtype": "Int",
+            "width": 100
         },
         {
             "label": _("Total Staff"),
@@ -69,12 +74,12 @@ def get_columns():
     ]
 
 def get_report_data(filters):
-    # Get timesheets for the specific date
+    # Fetch timesheets based on filters
     query = """
         SELECT 
-            dt.name as timesheet,
+            dt.name AS timesheet,
             dt.project,
-            dt.project_name as site
+            dt.project_name AS site
         FROM 
             `tabDirect Timesheet` dt
         WHERE 
@@ -83,30 +88,23 @@ def get_report_data(filters):
     """
 
     if filters.get("project"):
-        query += "AND dt.project = %(project)s"
-        filters["project"] = filters.project
+        query += " AND dt.project = %(project)s"
 
     if filters.get("date"):
-        query += "AND dt.start_date = %(date)s"
-        filters["start_date"] = filters.date
-
+        query += " AND dt.start_date = %(date)s"
 
     timesheets = frappe.db.sql(query, filters, as_dict=True)
 
-
     data = []
     for ts in timesheets:
-        # Get staff details grouped by designation
+        # Fetch staff details for each timesheet
         staff_query = """
             SELECT 
                 employee_name,
                 designation,
-                activity_type,
-                task,
                 labour_count,
                 description,
-                shift,
-                is_gang_leader_present
+                shift
             FROM 
                 `tabDirect Timesheet Staff Item`
             WHERE 
@@ -114,52 +112,39 @@ def get_report_data(filters):
             ORDER BY 
                 designation, employee_name
         """
-        
         staff_details = frappe.db.sql(staff_query, ts.timesheet, as_dict=1)
-        
-        # Initialize dictionaries to store grouped data
-        supervisors = []
+
+        # Group and process staff data
+        supervisors_work = []
+        operators_work = []
+        gang_leaders_work = []
         watchmen = []
-        labour_details = []
-        work_descriptions = set()  # Using set to avoid duplicates
-        total_labour = 0
-        
-        # Process staff details based on designation
+        labour_count = 0
+
         for staff in staff_details:
+            work = f"{staff.employee_name}: {staff.description}" if staff.description else staff.employee_name
             if staff.designation == "Supervisor":
-                supervisors.append(staff.employee_name)
+                supervisors_work.append(work)
+            elif staff.designation == "Operator":
+                operators_work.append(work)
+            elif staff.designation == "Gangleader":
+                gang_leaders_work.append(work)
+                labour_count += staff.labour_count or 0
             elif staff.designation == "Watchman":
                 watchmen.append(f"{staff.employee_name} ({staff.shift})")
-            elif staff.designation == "Gang Leader":
-                # Only add to labour details if labour count is greater than 0
-                if staff.labour_count and staff.labour_count > 0:
-                    labour_details.append(f"{staff.employee_name}-{staff.labour_count}")
-                    total_labour += staff.labour_count
-                else:
-                    labour_details.append(f"{staff.employee_name}")
-                
-                if(staff.is_gang_leader_present):
-                        total_labour += 1   # add one for the gang leader if present
-                    
-                # Only add work descriptions from Gang Leaders
-                if staff.description:
-                    work_descriptions.add(staff.description)
-        
+
+        # Prepare row data
         row = {
             "id": ts.timesheet,
             "site": ts.site,
-            "supervisor": " / ".join(supervisors) if supervisors else "",
-            "watchmen": " / ".join(watchmen) if watchmen else "",
-            "labour": ", ".join(labour_details) if labour_details else "",  # Will be empty if no labour_details
-            "work": " / ".join(work_descriptions) if work_descriptions else "",  # Only Gang Leader work descriptions
-            "total_staff": (
-                len(supervisors) +
-                len(watchmen) +
-                total_labour
-            ),
+            "supervisor_work": " / ".join(supervisors_work),
+            "operator_work": " / ".join(operators_work),
+            "gang_leader_work": " / ".join(gang_leaders_work),
+            "watchmen": " / ".join(watchmen),
+            "labour": labour_count,
+            "total_staff": len(supervisors_work) + len(operators_work) + len(gang_leaders_work) + len(watchmen) + labour_count,
             "remark": frappe.db.get_value("Direct Timesheet", ts.timesheet, "remarks") or ""
         }
-        
         data.append(row)
     
     return data
