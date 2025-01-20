@@ -87,7 +87,7 @@ frappe.query_reports["Stock Ledger HRC"] = {
 			get_query: function () {
 				return{
 					"filters":{
-						"designation": "Gang Leader"
+						"designation": "Gangleader"
 					}
 				}
 			}

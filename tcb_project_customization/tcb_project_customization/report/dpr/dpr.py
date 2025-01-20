@@ -142,7 +142,7 @@ def get_report_data(filters):
             "gang_leader_work": " / ".join(gang_leaders_work),
             "watchmen": " / ".join(watchmen),
             "labour": labour_count,
-            "total_staff": len(supervisors_work) + len(operators_work) + len(gang_leaders_work) + len(watchmen) + labour_count,
+            "total_staff": len(supervisors_work) + len(operators_work) + len(watchmen) + labour_count,
             "remark": frappe.db.get_value("Direct Timesheet", ts.timesheet, "remarks") or ""
         }
         data.append(row)
