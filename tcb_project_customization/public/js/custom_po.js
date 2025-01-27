@@ -32,6 +32,14 @@ frappe.ui.form.on('Purchase Order', {
 
         const financialYear = `${startYear.toString().slice(-2)}-${endYear.toString().slice(-2)}`;
         frm.set_value('custom_financial_year', financialYear);
+    },
+    company: function(frm){
+        if(frm.doc.company=="ANANYA"){
+            frm.set_value("naming_series","ANANYA/.FY./PO-.")
+        }
+        else{
+            frm.set_value("naming_series","HRC/.FY./PO-.")
+        }
     }
 });
 
