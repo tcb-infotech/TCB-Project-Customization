@@ -1,0 +1,124 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:RENT-TO-{customer}-{FY}-{####}",
+ "creation": "2025-01-30 11:01:21.902334",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "customer",
+  "start_date",
+  "end_date",
+  "payment_type",
+  "security_deposit",
+  "interest_rate",
+  "penalty_for_late_return",
+  "delivery_note",
+  "column_break_zudh",
+  "status",
+  "rental_terms",
+  "attachments",
+  "section_break_ibsr",
+  "table_zjnd"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Rent Date"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "Return Date"
+  },
+  {
+   "fieldname": "payment_type",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Payment Type",
+   "options": "Prepaid\nPostpaid\nNot Payment"
+  },
+  {
+   "fieldname": "security_deposit",
+   "fieldtype": "Float",
+   "label": "Security Deposit"
+  },
+  {
+   "fieldname": "interest_rate",
+   "fieldtype": "Float",
+   "label": "Interest Rate/Month"
+  },
+  {
+   "fieldname": "penalty_for_late_return",
+   "fieldtype": "Float",
+   "label": "Penalty for Late Return"
+  },
+  {
+   "fieldname": "column_break_zudh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Ongoing\nCompleted\nOverdue"
+  },
+  {
+   "fieldname": "rental_terms",
+   "fieldtype": "Long Text",
+   "label": "Rental Terms"
+  },
+  {
+   "fieldname": "attachments",
+   "fieldtype": "Attach",
+   "label": "Attachments"
+  },
+  {
+   "fieldname": "section_break_ibsr",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "table_zjnd",
+   "fieldtype": "Table",
+   "options": "Rent Item"
+  },
+  {
+   "fieldname": "delivery_note",
+   "fieldtype": "Link",
+   "label": "Delivery Note",
+   "options": "Delivery Note"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-02-01 10:59:29.474938",
+ "modified_by": "Administrator",
+ "module": "TCB Project Customization",
+ "name": "Rent",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
