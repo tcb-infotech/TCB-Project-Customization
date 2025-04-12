@@ -18,24 +18,24 @@ frappe.ui.form.on('Purchase Order', {
     //         frm.refresh_field('schedule_date')
     //     }
     // },
-    onload: function(frm) {
-        const today = new Date();
-        let startYear, endYear;
+    // onload: function(frm) {
+    //     const today = new Date();
+    //     let startYear, endYear;
 
-        if (today.getMonth() >= 3) { 
-            startYear = today.getFullYear();
-            endYear = startYear + 1;
-        } else { 
-            endYear = today.getFullYear();
-            startYear = endYear - 1;
-        }
+    //     if (today.getMonth() >= 3) { 
+    //         startYear = today.getFullYear();
+    //         endYear = startYear + 1;
+    //     } else { 
+    //         endYear = today.getFullYear();
+    //         startYear = endYear - 1;
+    //     }
 
-        const financialYear = `${startYear.toString().slice(-2)}-${endYear.toString().slice(-2)}`;
-        frm.set_value('custom_financial_year', financialYear);
+    //     const financialYear = `${startYear.toString().slice(-2)}-${endYear.toString().slice(-2)}`;
+    //     frm.set_value('custom_financial_year', financialYear);
 
-        set_future_date(frm)
+    //     set_future_date(frm)
         
-    },
+    // },
     company: function(frm){
         if(frm.doc.company=="ANANYA"){
             frm.set_value("naming_series","ANANYA/.FY./PO-.")
@@ -43,14 +43,14 @@ frappe.ui.form.on('Purchase Order', {
         else{
             frm.set_value("naming_series","HRC/.FY./PO-.")
         }
-    },
+    }
     
 });
 
 
-function set_future_date(frm) {
-    let today = new Date();
-    today.setFullYear(today.getFullYear() + 100);
-    let future_date = today.toISOString().split("T")[0]; // Format to YYYY-MM-DD
-    frm.set_value("schedule_date", future_date);
-}
+// function set_future_date(frm) {
+//     let today = new Date();
+//     today.setFullYear(today.getFullYear() + 100);
+//     let future_date = today.toISOString().split("T")[0]; // Format to YYYY-MM-DD
+//     frm.set_value("schedule_date", future_date);
+// }
