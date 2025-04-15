@@ -1,4 +1,4 @@
-frappe.ui.form.on("Inspection",{
+frappe.ui.form.on("DPR Detail",{
     onload: function(frm) {
         if(!frm.doc.custom_financial_year){
             const today = new Date();
@@ -17,4 +17,5 @@ frappe.ui.form.on("Inspection",{
             
         }
         }
+        
 })

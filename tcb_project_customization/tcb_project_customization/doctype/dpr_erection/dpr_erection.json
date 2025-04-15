@@ -1,0 +1,59 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-04-15 20:55:38.666813",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "tower_no",
+  "doc",
+  "type_of_tower",
+  "weight",
+  "add"
+ ],
+ "fields": [
+  {
+   "fieldname": "tower_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Tower No"
+  },
+  {
+   "fieldname": "doc",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "DOC"
+  },
+  {
+   "fieldname": "type_of_tower",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Type of Tower"
+  },
+  {
+   "fieldname": "weight",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Weight"
+  },
+  {
+   "fieldname": "add",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Add"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-04-15 21:07:53.487734",
+ "modified_by": "Administrator",
+ "module": "TCB Project Customization",
+ "name": "DPR Erection",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

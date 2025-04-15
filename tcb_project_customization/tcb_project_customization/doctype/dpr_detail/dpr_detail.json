@@ -1,0 +1,145 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-04-15 20:56:24.350969",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_dalm",
+  "naming_series",
+  "amended_from",
+  "dpr",
+  "date",
+  "column_break_txnf",
+  "foundation",
+  "erection",
+  "stringing",
+  "custom_financial_year",
+  "foundation_section",
+  "foundation_info",
+  "table_geui",
+  "erection_section",
+  "erection_info",
+  "table_glpn"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_dalm",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "DPR Detail",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "foundation",
+   "fieldtype": "Check",
+   "label": "Foundation"
+  },
+  {
+   "fieldname": "column_break_txnf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "erection",
+   "fieldtype": "Check",
+   "label": "Erection"
+  },
+  {
+   "default": "0",
+   "fieldname": "stringing",
+   "fieldtype": "Check",
+   "label": "Stringing"
+  },
+  {
+   "depends_on": "eval:doc.foundation",
+   "fieldname": "foundation_section",
+   "fieldtype": "Section Break",
+   "label": "Foundation"
+  },
+  {
+   "fieldname": "table_geui",
+   "fieldtype": "Table",
+   "options": "DPR Foundation"
+  },
+  {
+   "depends_on": "eval:doc.erection",
+   "fieldname": "erection_section",
+   "fieldtype": "Section Break",
+   "label": "Erection"
+  },
+  {
+   "fieldname": "table_glpn",
+   "fieldtype": "Table",
+   "options": "DPR Erection"
+  },
+  {
+   "fieldname": "dpr",
+   "fieldtype": "Link",
+   "label": "DPR",
+   "options": "Direct Timesheet"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "fieldname": "foundation_info",
+   "fieldtype": "Text Editor",
+   "label": "Foundation Info"
+  },
+  {
+   "fieldname": "erection_info",
+   "fieldtype": "Text Editor",
+   "label": "Erection Info"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "HRC/.custom_financial_year./DPR/"
+  },
+  {
+   "fieldname": "custom_financial_year",
+   "fieldtype": "Data",
+   "label": "Financial Year"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-04-15 21:35:40.368634",
+ "modified_by": "Administrator",
+ "module": "TCB Project Customization",
+ "name": "DPR Detail",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
