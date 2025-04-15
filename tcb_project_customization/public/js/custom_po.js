@@ -45,7 +45,7 @@ frappe.ui.form.on('Purchase Order', {
         }
     },
     refresh:function(frm){
-        if(frm.doc.docstatus==2){
+        if(frm.doc.docstatus==1){
             frm.add_custom_button("Inspection",()=>{
                 frappe.call({
                     method:"tcb_project_customization.doc_events.inspection.inspection",
