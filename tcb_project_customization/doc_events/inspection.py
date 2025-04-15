@@ -13,8 +13,17 @@ def inspection(doc):
                     "docstatus":["=",1]
                 }
             },
-            "Purchase Order Item": {
-                "doctype": "Purchase Order Item"
+             "Purchase Order Item": {
+                "doctype": "Inspection Item",  # your custom child table
+                "field_map": {
+                    "name": "purchase_order_item",   # optional: link back to PO item
+                    "parent": "purchase_order",      # optional: link to PO
+                    "item_code": "item_code",
+                    "item_name": "item_name",
+                    "qty": "qty",
+                    "uom": "uom",
+                    "custom_drawing_no":"custom_drawing_no"
+                }
             }
         },
         target_doc=None

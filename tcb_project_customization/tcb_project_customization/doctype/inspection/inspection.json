@@ -15,7 +15,7 @@
   "purchase_order",
   "section_break_rzvu",
   "remarks",
-  "items",
+  "item",
   "section_break_apzf",
   "table_dcus",
   "ending_remarks"
@@ -54,12 +54,6 @@
    "label": "Remarks"
   },
   {
-   "fieldname": "items",
-   "fieldtype": "Table",
-   "label": "Items",
-   "options": "Purchase Order Item"
-  },
-  {
    "fieldname": "section_break_apzf",
    "fieldtype": "Section Break",
    "label": "Details of Inspection"
@@ -91,12 +85,18 @@
    "fieldtype": "Link",
    "label": "Purchase Order",
    "options": "Purchase Order"
+  },
+  {
+   "fieldname": "item",
+   "fieldtype": "Table",
+   "label": "Item",
+   "options": "Inspection Item"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-04-15 14:20:38.879093",
+ "modified": "2025-04-15 16:21:59.214268",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Inspection",
