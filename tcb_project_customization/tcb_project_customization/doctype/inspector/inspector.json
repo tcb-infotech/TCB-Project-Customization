@@ -1,12 +1,13 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:name1",
+ "autoname": "naming_series:naming_series",
  "creation": "2025-04-15 14:19:06.741797",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "section_break_uvtc",
+  "naming_series",
   "amended_from",
   "name1",
   "address_line_1",
@@ -65,16 +66,22 @@
    "fieldname": "state",
    "fieldtype": "Data",
    "label": "State"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "INSP-"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-04-15 15:53:42.001685",
+ "modified": "2025-04-15 16:01:02.135486",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Inspector",
- "naming_rule": "By fieldname",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
