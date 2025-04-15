@@ -64,11 +64,6 @@
    "options": "Inspection Details"
   },
   {
-   "fieldname": "ending_remarks",
-   "fieldtype": "HTML Editor",
-   "label": "Ending Remarks"
-  },
-  {
    "fieldname": "inspector",
    "fieldtype": "Link",
    "label": "Supplier",
@@ -91,12 +86,17 @@
    "fieldtype": "Table",
    "label": "Item",
    "options": "Inspection Item"
+  },
+  {
+   "fieldname": "ending_remarks",
+   "fieldtype": "Text Editor",
+   "label": "Ending Remarks"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-04-15 17:35:27.974919",
+ "modified": "2025-04-15 17:39:23.622098",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Inspection",
