@@ -45,20 +45,22 @@ frappe.ui.form.on('Purchase Order', {
         }
     },
     refresh:function(frm){
-        frm.add_custom_button("Inspection",()=>{
-            frappe.call({
-                method:"tcb_project_customization.doc_events.inspection.inspection",
-                args:{
-                    doc:frm.doc.name
-                },
-                callback:(r)=>{
-                    if (!r.exc) {
-                        frappe.model.sync(r.message);
-                        frappe.set_route('Form', r.message.doctype, r.message.name);
+        if(frm.doc.docstatus==2){
+            frm.add_custom_button("Inspection",()=>{
+                frappe.call({
+                    method:"tcb_project_customization.doc_events.inspection.inspection",
+                    args:{
+                        doc:frm.doc.name
+                    },
+                    callback:(r)=>{
+                        if (!r.exc) {
+                            frappe.model.sync(r.message);
+                            frappe.set_route('Form', r.message.doctype, r.message.name);
+                        }
                     }
-                }
-            })
-        },["Create"])
+                })
+            },["Create"])
+        }
     }
     
 });
