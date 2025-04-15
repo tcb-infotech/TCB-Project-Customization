@@ -50,7 +50,7 @@
   },
   {
    "fieldname": "remarks",
-   "fieldtype": "Small Text",
+   "fieldtype": "Text",
    "label": "Remarks"
   },
   {
@@ -71,14 +71,14 @@
   },
   {
    "fieldname": "ending_remarks",
-   "fieldtype": "Small Text",
+   "fieldtype": "Text",
    "label": "Ending Remarks"
   },
   {
    "fieldname": "inspector",
    "fieldtype": "Link",
    "label": "Supplier",
-   "options": "Supplier"
+   "options": "Inspector"
   },
   {
    "fieldname": "naming_series",
@@ -96,7 +96,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-04-15 12:08:06.855719",
+ "modified": "2025-04-15 14:20:38.879093",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Inspection",
