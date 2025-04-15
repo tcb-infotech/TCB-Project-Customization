@@ -1,0 +1,27 @@
+<h3>Goods Receipt Summary</h3>
+<p><strong>Purchase Order:</strong> {{ po_no }}</p>
+
+<table border="1" cellpadding="6" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+      <th>Sr No</th>
+      <th>Item Code</th>
+      <th>Item Name</th>
+      <th>Ordered Qty</th>
+      <th>Received Qty</th>
+      <th>UOM</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ item.item_code }}</td>
+      <td>{{ item.item_name }}</td>
+      <td>{{ item.ordered_qty }}</td>
+      <td>{{ item.received_qty }}</td>
+      <td>{{ item.uom }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

@@ -155,6 +155,9 @@ doc_events = {
 	},
     'Vehicle':{
         'validate':'tcb_project_customization.doc_events.custom_vehicle.validate'
+    },
+    'Purchase Receipt':{
+        "on_submit":'tcb_project_customization.doc_events.mail_purchase_receipt.send_purchase_receipt_mail'
     }
 }
 
