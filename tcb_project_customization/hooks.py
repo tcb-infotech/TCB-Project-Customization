@@ -56,7 +56,8 @@ doctype_js = {
     'Quotation':'public/js/custom_quotation.js',
     "Direct Timesheet":"public/js/custom_direct_timesheet.js",
     "Inspection":"public/js/custom_inspection.js",
-    "DPR Detail":"public/js/custom_dpr_detail.js"
+    "DPR Detail":"public/js/custom_dpr_detail.js",
+    "Request for Quotation":"public/js/custom_request_for_quotation.js"
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
