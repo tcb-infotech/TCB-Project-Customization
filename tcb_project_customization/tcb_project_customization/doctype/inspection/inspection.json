@@ -18,7 +18,6 @@
   "remarks",
   "item",
   "section_break_apzf",
-  "table_dcus",
   "ending_remarks"
  ],
  "fields": [
@@ -51,19 +50,13 @@
   },
   {
    "fieldname": "remarks",
-   "fieldtype": "Text",
+   "fieldtype": "Text Editor",
    "label": "Remarks"
   },
   {
    "fieldname": "section_break_apzf",
    "fieldtype": "Section Break",
    "label": "Details of Inspection"
-  },
-  {
-   "allow_bulk_edit": 1,
-   "fieldname": "table_dcus",
-   "fieldtype": "Table",
-   "options": "Inspection Details"
   },
   {
    "fieldname": "inspector",
@@ -105,7 +98,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-04-15 17:51:25.087491",
+ "modified": "2025-04-18 11:25:12.163264",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Inspection",
