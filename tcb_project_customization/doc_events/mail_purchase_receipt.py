@@ -11,7 +11,6 @@ def send_purchase_receipt_mail(doc,method):
     for item in pr.items:
         po_item_doc = frappe.get_doc("Purchase Order Item", item.purchase_order_item)
         items_data.append({
-            "item_code": item.item_code,
             "item_name": item.item_name,
             "ordered_qty": po_item_doc.qty,
             "received_qty": item.qty,

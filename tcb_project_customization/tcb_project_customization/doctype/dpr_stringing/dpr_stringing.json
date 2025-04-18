@@ -1,0 +1,91 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-04-18 13:40:15.712190",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "tower_no",
+  "tower_type",
+  "work",
+  "labour",
+  "supervisor",
+  "welder",
+  "column_break_uhid",
+  "work_start_date",
+  "work_completion",
+  "gang_labour"
+ ],
+ "fields": [
+  {
+   "fieldname": "tower_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Tower No"
+  },
+  {
+   "fieldname": "tower_type",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Tower Type"
+  },
+  {
+   "fieldname": "work",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Work"
+  },
+  {
+   "fieldname": "column_break_uhid",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "work_start_date",
+   "fieldtype": "Date",
+   "label": "Work Start Date"
+  },
+  {
+   "fieldname": "work_completion",
+   "fieldtype": "Date",
+   "label": "Work Completion"
+  },
+  {
+   "fieldname": "gang_labour",
+   "fieldtype": "Data",
+   "label": "Gang/ Labour"
+  },
+  {
+   "fieldname": "labour",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Labour"
+  },
+  {
+   "fieldname": "supervisor",
+   "fieldtype": "Data",
+   "label": "Supervisor"
+  },
+  {
+   "fieldname": "welder",
+   "fieldtype": "Data",
+   "label": "Welder"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-04-18 13:43:27.732884",
+ "modified_by": "Administrator",
+ "module": "TCB Project Customization",
+ "name": "DPR Stringing",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -21,7 +21,10 @@
   "table_geui",
   "erection_section",
   "erection_info",
-  "table_glpn"
+  "table_glpn",
+  "section_break_dmru",
+  "stringing_info",
+  "table_gpmr"
  ],
  "fields": [
   {
@@ -114,12 +117,28 @@
    "fieldtype": "Data",
    "hidden": 1,
    "label": "Financial Year"
+  },
+  {
+   "fieldname": "section_break_dmru",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.stringing",
+   "fieldname": "stringing_info",
+   "fieldtype": "Text Editor",
+   "label": "Stringing Info"
+  },
+  {
+   "depends_on": "eval:doc.stringing",
+   "fieldname": "table_gpmr",
+   "fieldtype": "Table",
+   "options": "DPR Stringing"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-04-17 09:27:46.144531",
+ "modified": "2025-04-18 13:48:23.139468",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "DPR Detail",
