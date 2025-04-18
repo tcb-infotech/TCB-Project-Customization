@@ -11,6 +11,7 @@
   "supplier",
   "date",
   "custom_financial_year",
+  "shipping_address",
   "column_break_hofx",
   "address_line_1",
   "address_line_2",
@@ -104,11 +105,16 @@
    "fieldtype": "Select",
    "label": "Naming Series",
    "options": "HRC/DI/.custom_financial_year./"
+  },
+  {
+   "fieldname": "shipping_address",
+   "fieldtype": "Small Text",
+   "label": "Shipping Address"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-04-17 10:51:47.679105",
+ "modified": "2025-04-18 12:16:52.039257",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Delivery Instruction",
