@@ -108,13 +108,13 @@
   },
   {
    "fieldname": "shipping_address",
-   "fieldtype": "Small Text",
+   "fieldtype": "Text Editor",
    "label": "Shipping Address"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-04-18 12:16:52.039257",
+ "modified": "2025-04-18 12:20:44.569782",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Delivery Instruction",
