@@ -18,6 +18,7 @@
   "remarks",
   "item",
   "section_break_apzf",
+  "inspection_details",
   "ending_remarks"
  ],
  "fields": [
@@ -93,12 +94,18 @@
    "fieldtype": "Data",
    "hidden": 1,
    "label": "Financial Year"
+  },
+  {
+   "fieldname": "inspection_details",
+   "fieldtype": "Table",
+   "label": "Inspection Details",
+   "options": "Inspection Details"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-04-18 11:25:12.163264",
+ "modified": "2025-04-19 17:53:45.432382",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Inspection",
