@@ -18,15 +18,17 @@
   "status",
   "rental_terms",
   "attachments",
+  "column_break_turn",
+  "site",
+  "remarks",
   "section_break_ibsr",
   "table_zjnd"
  ],
  "fields": [
   {
    "fieldname": "customer",
-   "fieldtype": "Link",
-   "label": "Customer",
-   "options": "Customer"
+   "fieldtype": "Data",
+   "label": "Customer"
   },
   {
    "fieldname": "start_date",
@@ -72,7 +74,7 @@
   },
   {
    "fieldname": "rental_terms",
-   "fieldtype": "Long Text",
+   "fieldtype": "Text Editor",
    "label": "Rental Terms"
   },
   {
@@ -82,7 +84,8 @@
   },
   {
    "fieldname": "section_break_ibsr",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Rent Items"
   },
   {
    "fieldname": "table_zjnd",
@@ -94,11 +97,26 @@
    "fieldtype": "Link",
    "label": "Delivery Note",
    "options": "Delivery Note"
+  },
+  {
+   "fieldname": "column_break_turn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "site",
+   "fieldtype": "Link",
+   "label": "Site",
+   "options": "Project"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Text Editor",
+   "label": "Remarks"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-01 10:59:29.474938",
+ "modified": "2025-04-21 12:57:04.930116",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Rent",
