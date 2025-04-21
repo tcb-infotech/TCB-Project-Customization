@@ -21,29 +21,29 @@ frappe.ui.form.on('Vehicle Log', {
         // if (frm.doc.custom_current_location) {
         //     frm.set_df_property('custom_current_location', 'read_only', 1);
         // }
-        if(frm.doc.custom_current_location){
-            frm.set_query('custom_move_to', ()=>{
-                return {
-                    "filters" : {
-                        "location_name": frm.doc.custom_current_location,
-                    }
-                }
-            })
-        }
+        // if(frm.doc.custom_current_location){
+        //     frm.set_query('custom_move_to', ()=>{
+        //         return {
+        //             "filters" : {
+        //                 "location_name": frm.doc.custom_current_location,
+        //             }
+        //         }
+        //     })
+        // }
     },
 
     license_plate: function(frm){
         frm.set_value('custom_move_to',"");
     },
-    custom_current_location: function(frm){
-        frm.set_query('custom_move_to', ()=>{
-            return {
-                "filters" : {
-                    "location_name": ["!=", frm.doc.custom_current_location],
-                }
-            }
-        })
-    },
+    // custom_current_location: function(frm){
+    //     frm.set_query('custom_move_to', ()=>{
+    //         return {
+    //             "filters" : {
+    //                 "location_name": ["!=", frm.doc.custom_current_location],
+    //             }
+    //         }
+    //     })
+    // },
 
     before_save: function(frm) {
         frappe.call({
