@@ -33,17 +33,17 @@ frappe.ui.form.on('Purchase Order', {
         const financialYear = `${startYear.toString().slice(-2)}-${endYear.toString().slice(-2)}`;
         frm.set_value('custom_financial_year', financialYear);
 
-        set_future_date(frm)
+        // set_future_date(frm)
         
     },
-    company: function(frm){
-        if(frm.doc.company=="ANANYA"){
-            frm.set_value("naming_series","ANANYA/.FY./PO-.")
-        }
-        else{
-            frm.set_value("naming_series","HRC/.FY./PO-.")
-        }
-    },
+    // company: function(frm){
+    //     if(frm.doc.company=="ANANYA"){
+    //         frm.set_value("naming_series","ANANYA/.FY./PO-.")
+    //     }
+    //     else{
+    //         frm.set_value("naming_series","HRC/.FY./PO-.")
+    //     }
+    // },
     refresh:function(frm){
         if(frm.doc.docstatus==1){
             frm.add_custom_button("Inspection",()=>{
