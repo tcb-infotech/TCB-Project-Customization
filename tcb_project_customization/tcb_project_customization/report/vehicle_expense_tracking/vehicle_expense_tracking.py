@@ -153,7 +153,7 @@ def get_service_expense(logname):
 		"""
 		SELECT sum(expense)
 		FROM
-			`tabVehicle Log` log, `tabVehicle Service` service
+			`tabVehicle Log` log, `tabVehicle Service HRC` service
 		WHERE
 			service.parent=log.name and log.name=%s
 	""",
