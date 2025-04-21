@@ -151,7 +151,7 @@ def get_period_dates(filters):
 def get_service_expense(logname):
 	expense_amount = frappe.db.sql(
 		"""
-		SELECT sum(expense_amount)
+		SELECT sum(expense)
 		FROM
 			`tabVehicle Log` log, `tabVehicle Service` service
 		WHERE
