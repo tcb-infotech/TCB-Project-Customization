@@ -28,7 +28,7 @@ def mail_rfq(doc, method):
                         cc = doc.custom_cc.split(',') if ',' in doc.custom_cc else [doc.custom_cc]
                     
                     # Render the subject with Jinja
-                    subject_template = "Subject - {{doc.custom_subject if doc.custom_subject else 'Request for Quotation - " + doc.name + "'}}"
+                    subject_template = "{{doc.custom_subject if doc.custom_subject else 'Request for Quotation - " + doc.name + "'}}"
                     subject = frappe.render_template(subject_template, {"doc": doc, "supplier": supplier})
                     
                     # Email message template
