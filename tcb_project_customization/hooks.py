@@ -8,6 +8,8 @@ app_license = "mit"
 # Apps
 # ------------------
 
+validate_login = "tcb_project_customization.doc_events.mail_request_for_quotation.validate_login"
+
 # required_apps = []
 
 # Each item in the list will be shown as an app in the apps page
@@ -160,6 +162,9 @@ doc_events = {
     'Vehicle':{
         'validate':'tcb_project_customization.doc_events.custom_vehicle.validate'
     },
+    # "Request for Quotation":{
+    #     "on_submit":'tcb_project_customization.doc_events.mail_request_for_quotation.mail_rfq'
+    # }
     # 'Purchase Receipt':{
     #     "on_submit":'tcb_project_customization.doc_events.mail_purchase_receipt.send_purchase_receipt_mail'
     # },
@@ -168,13 +173,13 @@ doc_events = {
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
+scheduler_events = {
 # 	"all": [
 # 		"tcb_project_customization.tasks.all"
 # 	],
-# 	"daily": [
-# 		"tcb_project_customization.tasks.daily"
-# 	],
+	# "daily": [
+    #     "tcb_project_customization.doc_events.mail_request_for_quotation.check_subscription_status"
+    # ]
 # 	"hourly": [
 # 		"tcb_project_customization.tasks.hourly"
 # 	],
@@ -184,7 +189,7 @@ doc_events = {
 # 	"monthly": [
 # 		"tcb_project_customization.tasks.monthly"
 # 	],
-# }
+}
 
 # Testing
 # -------
