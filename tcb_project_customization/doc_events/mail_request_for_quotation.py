@@ -1,47 +1,79 @@
-# import frappe
-# from datetime import datetime
-
-# @frappe.whitelist()
-# def mail_rfq(doc, method):
-#     if isinstance(doc, str):
-#         doc = frappe.get_doc("Request for Quotation", doc)
+import frappe
+@frappe.whitelist()
+def mail_rfq(doc, method):
+    # If doc is passed as a string (from hooks), convert it to a document
+    if isinstance(doc, str):
+        doc = frappe.get_doc("Request for Quotation", doc)
     
-#     if doc.suppliers and doc.items:
-#         for supplier in doc.suppliers:
-#             if supplier.email_id and supplier.send_email:
-                
-#                 frappe.sendmail(
-#                     recipients=[supplier.email_id],
-#                     subject=f"Request for Quotation: {doc.name}",
-#                     message=frappe.render_template(
-#                         """
-#                         <p>Greetings {{ supplier.supplier }},</p>
-#                         <p>We would like to request a quotation for these mentioned items below-</p>
-#                         <table width='80%' border='1' cellpadding='5' cellspacing='0'>
-#                             <tr>
-#                                 <th>S.No</th>
-#                                 <th>Item</th>
-#                                 <th>QTY</th>
-#                                 <th>UOM</th>
-#                                 <th>Required Date</th>
-#                             </tr>
-#                             {% for item in doc.items %}
-#                             <tr>
-#                                 <td style='text-align:centers'>{{ loop.index }}</td>
-#                                 <td style='text-align:centers'>{{ item.item_code }}</td>
-#                                 <td style='text-align:centers'>{{ item.qty }}</td>
-#                                 <td style='text-align:centers'>{{ item.uom }}</td>
-#                                 <td style='text-align:centers'>{{ item.schedule_date }}</td>
-#                             </tr>
-#                             {% endfor %}
-#                         </table>
-#                         <p>{{ doc.message_for_supplier }}</p>
-#                         {% if doc.terms %}
-#                         <p>Terms and Conditions:</p>
-#                         <p>{{ doc.terms }}</p>
-#                         {% endif %}
-#                         <p>Best regards,<br>{{ doc.company }}</p>
-#                         """,
-#                         {"doc": doc, "supplier": supplier}
-#                     )
-#                 )
+    if doc.suppliers and doc.items:
+        for supplier in doc.suppliers:
+            if supplier.email_id and supplier.send_email:
+                try:
+                    # Get attachments from the document
+                    attachments = []
+                    # Get attachments from File Attachment table if it exists
+                    for attachment in frappe.get_all("File",
+                                                   fields=["name", "file_name", "file_url"],
+                                                   filters={"attached_to_doctype": "Request for Quotation",
+                                                           "attached_to_name": doc.name}):
+                        file_doc = frappe.get_doc("File", attachment.name)
+                        attachments.append({
+                            "fname": file_doc.file_name,
+                            "fcontent": file_doc.get_content()
+                        })
+                    
+                    # Prepare CC recipients
+                    cc = []
+                    if hasattr(doc, 'custom_cc') and doc.custom_cc:
+                        cc = doc.custom_cc.split(',') if ',' in doc.custom_cc else [doc.custom_cc]
+                    
+                    # Render the subject with Jinja
+                    subject_template = "{{doc.custom_subject if doc.custom_subject else 'Request for Quotation - " + doc.name + "'}}"
+                    subject = frappe.render_template(subject_template, {"doc": doc, "supplier": supplier})
+                    
+                    # Email message template
+                    message_template = """
+                     Greetings {{supplier.supplier}},<br/>
+                    {{doc.custom_email_content if doc.custom_email_content else 'We would like to request a quotation for these mentioned items below-'}}<br/>
+                     <table width='100%' border='1'>
+                     <tr>
+                     <td>S.No</td>
+                     <td>Item</td>
+                     <td>QTY</td>
+                     <td>UOM</td>
+                     <td>Drawing No</td>
+                     </tr>
+                     {% for item in doc.items%}
+                     <tr>
+                     <td>{{loop.index}}</td>
+                     <td>{{item.item_code}}</td>
+                     <td>{{item.qty}}</td>
+                     <td>{{item.uom}}</td>
+                     <td>{{item.custom_drawing_no or ""}}</td>
+                     </tr>
+                     {%endfor%}
+                     </table><br/>
+                     {{doc.message_for_supplier}}<br/>
+                     {% if doc.terms%}
+                     Terms and Conditions -
+                     {{doc.terms}}
+                     {%endif%}><br/>
+                     Best regards,
+                     {{doc.company}}
+                    """
+                    
+                    # Render the message with Jinja
+                    message = frappe.render_template(message_template, {"doc": doc, "supplier": supplier})
+                    
+                    # Send email
+                    frappe.sendmail(
+                        recipients=[supplier.email_id],
+                        cc=cc,
+                        subject=subject,
+                        attachments=attachments,
+                        message=message
+                    )
+                    
+                    frappe.logger().info(f"Email sent to {supplier.email_id} for RFQ {doc.name}")
+                except Exception as e:
+                    frappe.logger().error(f"Failed to send email to {supplier.email_id}: {str(e)}")
