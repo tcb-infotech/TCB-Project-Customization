@@ -55,10 +55,10 @@ def mail_rfq(doc, method):
                      </table><br/>
                      {{doc.message_for_supplier}}<br/>
                      {% if doc.terms%}
-                     Terms and Conditions -
+                     Terms and Conditions -<br/>
                      {{doc.terms}}
-                     {%endif%}><br/>
-                     Best regards,
+                     {%endif%}<br/>
+                     Thanks and regards,<br/>
                      {{doc.company}}
                     """
                     
