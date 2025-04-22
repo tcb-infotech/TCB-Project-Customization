@@ -33,7 +33,7 @@ def mail_rfq(doc, method):
                     
                     # Email message template
                     message_template = """
-                    {{doc.message_for_supplier if doc.message_for_supplier else 'We would like to request a quotation for these mentioned items below-'}}<br/>
+                    Subject - {{doc.message_for_supplier if doc.message_for_supplier else 'We would like to request a quotation for these mentioned items below-'}}<br/>
                      <table width='100%' border='1' style="border-collapse:collapse; color:black" >
                      <tr>
                      <td>S.No</td>
