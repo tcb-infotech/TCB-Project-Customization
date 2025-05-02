@@ -8,6 +8,7 @@
  "field_order": [
   "item_code",
   "uom",
+  "description",
   "column_break_kxlz",
   "qty",
   "custom_drawing_no"
@@ -41,12 +42,18 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Drawing No"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "in_list_view": 1,
+   "label": "Description"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-04-15 16:23:40.101265",
+ "modified": "2025-05-02 14:47:14.482468",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Inspection Item",
