@@ -18,6 +18,7 @@
   "city",
   "state",
   "pincode",
+  "company",
   "section_break_wjip",
   "description",
   "section_break_btyy",
@@ -110,11 +111,17 @@
    "fieldname": "shipping_address",
    "fieldtype": "Text Editor",
    "label": "Shipping Address"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-04-18 12:20:44.569782",
+ "modified": "2025-05-03 12:16:11.553386",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Delivery Instruction",
