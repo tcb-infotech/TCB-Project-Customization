@@ -58,7 +58,8 @@ doctype_js = {
     "Inspection":"public/js/custom_inspection.js",
     "DPR Detail":"public/js/custom_dpr_detail.js",
     "Request for Quotation":"public/js/custom_request_for_quotation.js",
-    "Material Receipt":"public/js/custom_material_receipt.js"
+    "Material Receipt":"public/js/custom_material_receipt.js",
+    "Delivery Instruction":"public/js/custom_delivery_instruction.js"
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
