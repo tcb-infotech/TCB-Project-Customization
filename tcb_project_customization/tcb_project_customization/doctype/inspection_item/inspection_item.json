@@ -33,7 +33,7 @@
   },
   {
    "fieldname": "qty",
-   "fieldtype": "Int",
+   "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Qty"
   },
@@ -53,7 +53,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-05-02 14:47:14.482468",
+ "modified": "2025-05-06 11:53:31.323610",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Inspection Item",
