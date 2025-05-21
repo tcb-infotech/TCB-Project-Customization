@@ -13,10 +13,11 @@
  "fields": [
   {
    "fieldname": "name1",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Name"
+   "label": "Name",
+   "options": "Inspection Detail Name"
   },
   {
    "fieldname": "column_break_uxtp",
@@ -33,7 +34,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-04-15 10:15:28.243384",
+ "modified": "2025-05-21 17:07:41.755817",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Inspection Details",
