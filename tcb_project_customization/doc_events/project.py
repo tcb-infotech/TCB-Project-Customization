@@ -54,7 +54,7 @@ def after_insert(doc, method):
 # it creates a new document instance but does not save it until you call .insert() or .save()
     parent_warehouse_doc= frappe.get_doc({
         'doctype':'Warehouse',
-        'warehouse_name':doc.custom_project_name1,
+        'warehouse_name':doc.project_name,
         'custom_project':doc.name, 
         'is_group': 1,
     })
@@ -64,7 +64,7 @@ def after_insert(doc, method):
     
     store_warehouse_doc= frappe.get_doc({
         'doctype':'Warehouse',
-        'warehouse_name':f"{doc.custom_project_name1}-Store",
+        'warehouse_name':f"{doc.project_name}-Store",
         'custom_project':doc.name, 
         'parent_warehouse': parent_warehouse_doc.name
     })
