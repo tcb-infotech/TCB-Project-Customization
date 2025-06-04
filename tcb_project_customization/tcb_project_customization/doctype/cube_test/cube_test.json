@@ -1,0 +1,120 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:naming_series",
+ "creation": "2025-06-04 22:47:19.628978",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_n6yd",
+  "amended_from",
+  "naming_series",
+  "date",
+  "column_break_atty",
+  "inspector",
+  "inspector_address",
+  "inspector_address_line_2",
+  "section_break_dgmw",
+  "text",
+  "cube_test_table",
+  "end_remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_n6yd",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Cube Test",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "HRCIN/LETTER/25-26/"
+  },
+  {
+   "fieldname": "inspector",
+   "fieldtype": "Link",
+   "label": "Inspector",
+   "options": "Inspector"
+  },
+  {
+   "fetch_from": "inspector.address_line_1",
+   "fieldname": "inspector_address",
+   "fieldtype": "Data",
+   "label": "Inspector Address Line 1"
+  },
+  {
+   "fetch_from": "inspector.address_line_2",
+   "fieldname": "inspector_address_line_2",
+   "fieldtype": "Data",
+   "label": "Inspector Address Line 2"
+  },
+  {
+   "fieldname": "text",
+   "fieldtype": "Text Editor",
+   "label": "Text"
+  },
+  {
+   "fieldname": "cube_test_table",
+   "fieldtype": "Table",
+   "label": "Cube Test Table",
+   "options": "Cube Test Table"
+  },
+  {
+   "fieldname": "column_break_atty",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_dgmw",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "end_remarks",
+   "fieldtype": "Text Editor",
+   "label": "End Remarks"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-06-04 22:56:59.677555",
+ "modified_by": "Administrator",
+ "module": "TCB Project Customization",
+ "name": "Cube Test",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
