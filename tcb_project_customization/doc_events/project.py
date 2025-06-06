@@ -56,6 +56,7 @@ def after_insert(doc, method):
         'doctype':'Warehouse',
         'warehouse_name':doc.project_name,
         'custom_project':doc.name, 
+        "company":doc.company,
         'is_group': 1,
     })
 
@@ -66,6 +67,7 @@ def after_insert(doc, method):
         'doctype':'Warehouse',
         'warehouse_name':f"{doc.project_name}-Store",
         'custom_project':doc.name, 
+        "company":doc.company,
         'parent_warehouse': parent_warehouse_doc.name
     })
 
