@@ -47,32 +47,24 @@ def validate(self, *args, **kwargs):
     unique_details = []
 
 
-def after_insert(doc, method):
+def after_insert(doc, method=None):
 
-# get_doc is used for two purposed, to fetch existing documents or create a new document
-# When you pass a dictionary of values with the 'doctype' key, 
-# it creates a new document instance but does not save it until you call .insert() or .save()
-    parent_warehouse_doc= frappe.get_doc({
-        'doctype':'Warehouse',
-        'warehouse_name':doc.project_name,
-        'custom_project':doc.name, 
-        "company":doc.company,
-        'is_group': 1,
-    })
-
-    parent_warehouse_doc.insert()
-
-    
-    store_warehouse_doc= frappe.get_doc({
-        'doctype':'Warehouse',
-        'warehouse_name':f"{doc.project_name}-Store",
-        'custom_project':doc.name, 
-        "company":doc.company,
-        'parent_warehouse': parent_warehouse_doc.name
-    })
-
-    store_warehouse_doc.insert()
-
-
+    if not frappe.db.exists("Warehouse", {"warehouse_name": doc.project_name}):
+        parent_warehouse_doc = frappe.new_doc("Warehouse")
+        parent_warehouse_doc.warehouse_name = doc.project_name
+        parent_warehouse_doc.custom_project = doc.name
+        parent_warehouse_doc.company = doc.company
+        parent_warehouse_doc.is_group = 1
+        parent_warehouse_doc.save()
+    else:
+        parent_warehouse_doc = frappe.get_doc("Warehouse", {"warehouse_name": doc.project_name})
+        
+    if not frappe.db.exists("Warehouse", {"warehouse_name": f"{doc.project_name}-Store"}):
+        store_warehouse_doc = frappe.new_doc("Warehouse")
+        store_warehouse_doc.warehouse_name = f"{doc.project_name}-Store"
+        store_warehouse_doc.custom_project = doc.name
+        store_warehouse_doc.company = doc.company
+        store_warehouse_doc.parent_warehouse = parent_warehouse_doc.name
+        store_warehouse_doc.save()
 
     frappe.msgprint("Warehouse Successfully Created")
