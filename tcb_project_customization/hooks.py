@@ -59,7 +59,8 @@ doctype_js = {
     "DPR Detail":"public/js/custom_dpr_detail.js",
     "Request for Quotation":"public/js/custom_request_for_quotation.js",
     "Material Receipt":"public/js/custom_material_receipt.js",
-    "Delivery Instruction":"public/js/custom_delivery_instruction.js"
+    "Delivery Instruction":"public/js/custom_delivery_instruction.js",
+    "Cube Test":"public/js/cube_test.js"
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -156,8 +157,8 @@ doctype_js = {
 
 doc_events = {
 	"Project": {
-		"validate": "tcb_project_customization.doc_events.project.validate",
-        "after_insert":"tcb_project_customization.doc_events.project.after_insert"
+		"validate": ["tcb_project_customization.doc_events.project.validate"],
+        "after_insert":["tcb_project_customization.doc_events.project.after_insert"]
 	},
     'Vehicle':{
         'validate':'tcb_project_customization.doc_events.custom_vehicle.validate'
