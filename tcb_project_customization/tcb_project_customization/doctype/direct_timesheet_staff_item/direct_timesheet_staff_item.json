@@ -8,6 +8,7 @@
  "field_order": [
   "employee",
   "employee_name",
+  "team_leader",
   "column_break_jnpi",
   "designation",
   "is_gang_leader_present",
@@ -17,6 +18,8 @@
   "tower_type",
   "column_break_kxaq",
   "task",
+  "work_start_date",
+  "work_completion_date",
   "section_break_eyqr",
   "column_break_akmo",
   "column_break_inuq",
@@ -34,12 +37,6 @@
    "in_standard_filter": 1,
    "label": "Activity Type",
    "options": "Activity Type"
-  },
-  {
-   "fieldname": "task",
-   "fieldtype": "Link",
-   "label": "Task",
-   "options": "Task"
   },
   {
    "depends_on": "eval:doc.designation == \"Gangleader\"",
@@ -68,8 +65,7 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Employee",
-   "options": "Employee",
-   "reqd": 1
+   "options": "Employee"
   },
   {
    "columns": 2,
@@ -142,12 +138,34 @@
    "fieldname": "tower_type",
    "fieldtype": "Data",
    "label": "Tower Type"
+  },
+  {
+   "fieldname": "team_leader",
+   "fieldtype": "Link",
+   "label": "Team Leader",
+   "options": "Team Leader"
+  },
+  {
+   "fieldname": "work_start_date",
+   "fieldtype": "Date",
+   "label": "Work Start Date"
+  },
+  {
+   "fieldname": "work_completion_date",
+   "fieldtype": "Date",
+   "label": "Work Completion Date"
+  },
+  {
+   "fieldname": "task",
+   "fieldtype": "Link",
+   "label": "Task",
+   "options": "Task"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-07-03 21:00:47.605198",
+ "modified": "2025-07-04 20:40:01.713909",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Direct Timesheet Staff Item",
