@@ -158,7 +158,7 @@ doctype_js = {
 doc_events = {
 	"Project": {
 		"validate": ["tcb_project_customization.doc_events.project.validate"],
-        "after_insert":["tcb_project_customization.doc_events.project.after_insert"]
+        "after_insert":"tcb_project_customization.doc_events.project.after_insert"
 	},
     'Vehicle':{
         'validate':'tcb_project_customization.doc_events.custom_vehicle.validate'

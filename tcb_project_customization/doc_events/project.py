@@ -48,23 +48,11 @@ def validate(self, *args, **kwargs):
 
 
 def after_insert(doc, method=None):
-
-    if not frappe.db.exists("Warehouse", {"warehouse_name": doc.project_name}):
-        parent_warehouse_doc = frappe.new_doc("Warehouse")
-        parent_warehouse_doc.warehouse_name = doc.project_name
-        parent_warehouse_doc.custom_project = doc.name
-        parent_warehouse_doc.company = doc.company
-        parent_warehouse_doc.is_group = 1
-        parent_warehouse_doc.save()
-    else:
-        parent_warehouse_doc = frappe.get_doc("Warehouse", {"warehouse_name": doc.project_name})
-        
     if not frappe.db.exists("Warehouse", {"warehouse_name": f"{doc.project_name}-Store"}):
         store_warehouse_doc = frappe.new_doc("Warehouse")
         store_warehouse_doc.warehouse_name = f"{doc.project_name}-Store"
         store_warehouse_doc.custom_project = doc.name
         store_warehouse_doc.company = doc.company
-        store_warehouse_doc.parent_warehouse = parent_warehouse_doc.name
         store_warehouse_doc.save()
 
     frappe.msgprint("Warehouse Successfully Created")
