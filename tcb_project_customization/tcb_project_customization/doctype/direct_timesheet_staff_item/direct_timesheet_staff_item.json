@@ -39,7 +39,6 @@
    "options": "Activity Type"
   },
   {
-   "depends_on": "eval:doc.designation == \"Gangleader\"",
    "fieldname": "labour_count",
    "fieldtype": "Int",
    "in_list_view": 1,
@@ -165,7 +164,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-07-04 20:40:01.713909",
+ "modified": "2025-08-14 17:10:05.839078",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Direct Timesheet Staff Item",

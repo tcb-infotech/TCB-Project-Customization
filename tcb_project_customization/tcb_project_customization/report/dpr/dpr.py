@@ -93,18 +93,18 @@ def get_report_data(filters):
                         supervisor_works.append(f"{staff.employee_name}: {staff.description}")
                     if not supervisor_contact:
                         supervisor_contact = frappe.db.get_value("Employee", {"employee_name": staff.employee_name}, "cell_number") or ""
-                elif staff.designation == "Manager":
+                if staff.designation == "Manager":
                     managers.append(staff.employee_name)
                     if staff.description:
                         manager_works.append(f"{staff.employee_name}: {staff.description}")
-                elif staff.designation == "Operator":
+                if staff.designation == "Operator":
                     operators.append(staff.employee_name)
-                elif staff.team_leader:
+                if staff.team_leader:
                     team_leaders.append(staff.team_leader)
                     if staff.description:
                         team_leader_works.append(f"{staff.team_leader}: {staff.description}")
                     labour_count += staff.labour_count or 0
-                elif staff.designation == "Watchman":
+                if staff.designation == "Watchman":
                     watchmen.append(f"{staff.employee_name} ({staff.shift})")
 
             row = {

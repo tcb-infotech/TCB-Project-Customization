@@ -25,61 +25,62 @@ class DirectTimesheet(Document):
         #     self.set_dates()
     #     self.calculate_hours()
         
-    def on_submit(self):
-        try:
-            grouped_by_employee = defaultdict(list)
-            for row in self.staff_details:
-                leader = row.employee
-                grouped_by_employee[leader].append(row)
+    # New
+    # def on_submit(self):
+    #     try:
+    #         grouped_by_employee = defaultdict(list)
+    #         for row in self.staff_details:
+    #             leader = row.employee
+    #             grouped_by_employee[leader].append(row)
             
-            grouped_by_employee = dict(grouped_by_employee)
+    #         grouped_by_employee = dict(grouped_by_employee)
             
-            for leader, group in grouped_by_employee.items():
-                # print("leader", leader)
-                # print(group)
+    #         for leader, group in grouped_by_employee.items():
+    #             # print("leader", leader)
+    #             # print(group)
                 
-                ts = frappe.new_doc("Timesheet")
+    #             ts = frappe.new_doc("Timesheet")
                 
-                if self.amended_from and len(group):
-                    ts.amended_from = group[0].timesheet_id
+    #             if self.amended_from and len(group):
+    #                 ts.amended_from = group[0].timesheet_id
                     
-                ts.company = self.company
-                ts.employee = leader
-                ts.customer = self.customer
+    #             ts.company = self.company
+    #             ts.employee = leader
+    #             ts.customer = self.customer
 
-                if hasattr(ts, 'custom_direct_timesheet'):
-                    ts.custom_direct_timesheet = self.name
+    #             if hasattr(ts, 'custom_direct_timesheet'):
+    #                 ts.custom_direct_timesheet = self.name
 
                 
-                for row in group:
-                    ts.append("time_logs", {
-                        "activity_type": row.activity_type,
-                        "task": row.task,
-                        "project": self.project,
-                        "from_time": today(),
-                        "to_time": add_days(today(),1),
-                        "hours": 24,
-                        "description": row.description
-                    })
+    #             for row in group:
+    #                 ts.append("time_logs", {
+    #                     "activity_type": row.activity_type,
+    #                     "task": row.task,
+    #                     "project": self.project,
+    #                     "from_time": today(),
+    #                     "to_time": add_days(today(),1),
+    #                     "hours": 24,
+    #                     "description": row.description
+    #                 })
                 
-                ts.save()
-                ts.submit()
+    #             ts.save()
+    #             ts.submit()
                 
-                # Update timesheet_id in the original staff_details
-                for row in group:
-                    # Update at database level
-                    frappe.db.set_value('Direct Timesheet Staff Item', row.name, 'timesheet_id', ts.name)
-                    # Update in current document
-                    row.timesheet_id = ts.name
+    #             # Update timesheet_id in the original staff_details
+    #             for row in group:
+    #                 # Update at database level
+    #                 frappe.db.set_value('Direct Timesheet Staff Item', row.name, 'timesheet_id', ts.name)
+    #                 # Update in current document
+    #                 row.timesheet_id = ts.name
                 
-                # Commit the database changes
-                frappe.db.commit()
+    #             # Commit the database changes
+    #             frappe.db.commit()
                 
-        except Exception as e:
-            frappe.throw(f"Can't Create TimeSheet Due To Internal Error: {str(e)}")
+    #     except Exception as e:
+    #         frappe.throw(f"Can't Create TimeSheet Due To Internal Error: {str(e)}")
 
     
-    
+    # OLD
     # def on_cancel(self):
     #     try:
     #         timesheet_set = set()
@@ -191,3 +192,24 @@ def sync_project_details_with_timesheet(timesheet_id, project):
     except Exception as e:
         frappe.log_error(frappe.get_traceback(), _("Project Sync Error"))
         frappe.throw(_("Error syncing project details: {0}").format(str(e)))
+
+
+
+
+
+
+# REMOVE SUBMITTED ENTRIES
+# def del_dpr():
+#     start = "2025-08-13 00:00:00"
+#     end = "2025-08-13 23:59:59"
+
+#     dpr_list = frappe.db.get_all(
+#         "Direct Timesheet",
+#         filters={"creation": ["between", [start, end]],"docstatus":2},
+#         pluck="name"
+#     )
+
+#     for entry in dpr_list:
+#         # doc = frappe.get_doc("Direct Timesheet",entry)
+#         # doc.cancel()
+#         frappe.delete_doc("Direct Timesheet",entry)
