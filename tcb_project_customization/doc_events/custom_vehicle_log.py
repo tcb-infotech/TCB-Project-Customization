@@ -2,6 +2,7 @@ import frappe
 from frappe import utils
 import json
 from frappe import _
+from frappe.utils import today
 
 @frappe.whitelist()
 def set_vehicle_movement(doc):
@@ -65,3 +66,18 @@ def get_draft_entries(doc):
     )
     
     return draft_entries
+
+
+
+def fetch_last_date(doc,method=None):
+    logs = frappe.db.get_all("Vehicle Log",{"license_plate":doc.license_plate},page_length=2, order_by = "creation desc",pluck="name")
+
+    for log_data in logs:
+        if not log_data == doc.name:
+            log = frappe.get_doc("Vehicle Log",log_data)
+            if log.custom_last_date:
+                frappe.db.set_value("Vehicle Log",doc.name,"custom_last_date",log.custom_last_date or "")
+            break
+        
+def set_last_date(doc,method=None):
+    frappe.db.set_value("Vehicle Log",doc.name,"custom_last_date",today())

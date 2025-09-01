@@ -163,6 +163,10 @@ doc_events = {
     'Vehicle':{
         'validate':'tcb_project_customization.doc_events.custom_vehicle.validate'
     },
+    "Vehicle Log":{
+        "after_insert":"tcb_project_customization.doc_events.custom_vehicle_log.fetch_last_date",
+        "on_submit":"tcb_project_customization.doc_events.custom_vehicle_log.set_last_date"
+    }
     # "Request for Quotation":{
     #     "on_submit":'tcb_project_customization.doc_events.mail_request_for_quotation.mail_rfq'
     # }
