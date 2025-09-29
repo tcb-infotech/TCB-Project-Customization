@@ -44,7 +44,7 @@ def get_report_data(filters):
                                     filters={"item_group": "Cement"},
                                     pluck="name"
                                 )
-    print('\n------------here is the item gorup cements items----',cement_group_items)
+    # print('\n------------here is the item gorup cements items----',cement_group_items)
     
     data = []
     for ts in timesheets:
@@ -131,14 +131,14 @@ def get_report_data(filters):
                 # old_project =  ts.project
                 
                 # print('---this is the project -- ',ts.project,'--------',project_related_warehouse)
-                print('----------this is warehosue----',project_related_warehouse, '-----',ts.project)
+                # print('----------this is warehosue----',project_related_warehouse, '-----',ts.project)
                 from frappe.utils import getdate
                 timesheet_date_obj = getdate(ts.timesheet_date)
                 # print('-----converted date---', timesheet_date_obj)
                 # print('------------here is the item gorup cements items----',cement_group_items)
                 # warehouse_name = project_related_warehouse.warehouse_name if project_related_warehouse.warehouse_name else ""
                 # print('------------here is the project warehosue----',project_related_warehouse)
-                print('-----this is the date---',ts.timesheet_date)
+                # print('-----this is the date---',ts.timesheet_date)
                 cement_stock = 0
                 for item in cement_group_items:
                     ledger_entries_for_stock = frappe.db.get_all("Stock Ledger Entry",
@@ -168,7 +168,7 @@ def get_report_data(filters):
                                                 fields=["name","warehouse","qty_after_transaction","actual_qty","posting_date"]
                                                 )
                 # print('-------------------------------ledger_entries_for_stock-------',ledger_entries_for_stock)
-                print('-------------------------------ledger_entries_for_consuption-------',ledger_entries_for_consuption)
+                # print('-------------------------------ledger_entries_for_consuption-------',ledger_entries_for_consuption)
                 
                 #for entry in ledger_entries:
             #     wh = frappe.db.get_value("Warehouse",entry.warehouse,"custom_project")
@@ -219,12 +219,12 @@ def get_report_data(filters):
                 "site": ts.site,
                 "vehicle_summary": vehicle_summary
             })
-        print()
-        print()
+        # print()
+        # print()
         
-        print()
-        print()
-        print()
+        # print()
+        # print()
+        # print()
         
         # print('\n---------project rowsss--',project_rows)
         # print('-------ts project site--',ts.site)
