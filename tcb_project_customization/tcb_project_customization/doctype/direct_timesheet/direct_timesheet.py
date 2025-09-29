@@ -8,19 +8,35 @@ from frappe import _
 from collections import defaultdict
 
 class DirectTimesheet(Document):
-    def validate(self):
-    # Unique SuperVisors
-        employee_set = set()
-        unique_details = []
+    pass
+    # def validate(self):
+    # # Unique SuperVisors
+    #     employee_set = {}
+    #     unique_details = []
+    #     for emp in self.staff_details:
+    #         # print( 'ye hai yaha pr emplye',emp.employee, ' and this is leader --',emp.team_leader)
+    #         both = []
+    #         both.append(emp.team_leader)
+    #         both.append(emp.employee)
+    #         # print()
+    #         # print('------this is both ',both)
+    #         # print( 'ye hai yaha pr emplye set ki values --',employee_set.values())
+    #         if both in employee_set.values():
+    #             frappe.msgprint(
+    #                                 f"⚠️ Duplicate row removed: Team Leader <b>{emp.team_leader}</b> "
+    #                                 f"with Employee <b>{emp.employee}</b> already exists."
+    #                             )
+    #         if both not in employee_set.values():
+    #             unique_details.append(emp)
+    #             employee_set[emp.name] = []
+    #             employee_set[emp.name].append(emp.team_leader)
+    #             employee_set[emp.name].append(emp.employee)
+    #             # print('here is the employee set,--',employee_set)
+    #         both = []
 
-        for emp in self.staff_details:
-            if emp.employee not in employee_set:
-                unique_details.append(emp)
-                employee_set.add(emp.employee)
-
-        self.staff_details = []
-        for emp in unique_details:
-            self.append("staff_details",emp)
+        # self.staff_details = []
+        # for emp in unique_details:
+        #     self.append("staff_details",emp)
         #     self.validate_dates()
         #     self.set_dates()
     #     self.calculate_hours()
