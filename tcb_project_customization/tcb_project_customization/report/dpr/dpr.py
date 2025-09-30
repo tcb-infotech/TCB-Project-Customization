@@ -45,7 +45,7 @@ def get_report_data(filters):
                                     pluck="name"
                                 )
     # print('\n------------here is the item gorup cements items----',cement_group_items)
-    
+    timesheet_names = []
     data = []
     for ts in timesheets:
         project_rows = []
@@ -119,60 +119,7 @@ def get_report_data(filters):
                         team_leader_works.append(f"{staff.team_leader}: {staff.description}")
                     labour_count += staff.labour_count or 0
                 if staff.designation == "Watchman":
-                    watchmen.append(f"{staff.employee_name} ({staff.shift})")
-            # projects = 0
-            
-            # timesheet_name = ts.timesheet
-            
-            if ts.site:
-                project_related_warehouse = frappe.get_value("Warehouse",filters={
-                    "custom_project" : ts.project
-                },fieldname="name")
-                # old_project =  ts.project
-                
-                # print('---this is the project -- ',ts.project,'--------',project_related_warehouse)
-                # print('----------this is warehosue----',project_related_warehouse, '-----',ts.project)
-                from frappe.utils import getdate
-                timesheet_date_obj = getdate(ts.timesheet_date)
-                # print('-----converted date---', timesheet_date_obj)
-                # print('------------here is the item gorup cements items----',cement_group_items)
-                # warehouse_name = project_related_warehouse.warehouse_name if project_related_warehouse.warehouse_name else ""
-                # print('------------here is the project warehosue----',project_related_warehouse)
-                # print('-----this is the date---',ts.timesheet_date)
-                cement_stock = 0
-                for item in cement_group_items:
-                    ledger_entries_for_stock = frappe.db.get_all("Stock Ledger Entry",
-                                                    filters={
-                                                    "item_code": item,
-                                                    "posting_date": timesheet_date_obj,
-                                                    "warehouse": project_related_warehouse
-                                                    },order_by ="modified desc" ,
-                                                    limit=1,
-                                                    fields=["name","item_code","warehouse","qty_after_transaction","actual_qty","posting_date"]
-                                                    )
-                    # print('-------------------------------ledger_entries_for_stock-------',ledger_entries_for_stock)
-                    if ledger_entries_for_stock:
-                        # print('-----ledger_entries_for_stock[0].actual_qty-- ',ledger_entries_for_stock[0].qty_after_transaction)
-                        # print('-----ledger_entries_for_stock[0].name-- ',ledger_entries_for_stock[0].name)
-                        # print('-----ledger_entries_for_stock[0].item_code-- ',ledger_entries_for_stock[0].item_code)
-                        cement_stock = cement_stock+ledger_entries_for_stock[0].qty_after_transaction
-                        # print("---------cement stock ----",cement_stock)
-                    
-                ledger_entries_for_consuption = frappe.db.get_all("Stock Ledger Entry",
-                                                filters={
-                                                "item_code": ["in", cement_group_items],
-                                                "posting_date": timesheet_date_obj,
-                                                "warehouse": project_related_warehouse
-                                                },order_by ="modified desc" ,
-                                                # fields ='*'
-                                                fields=["name","warehouse","qty_after_transaction","actual_qty","posting_date"]
-                                                )
-                # print('-------------------------------ledger_entries_for_stock-------',ledger_entries_for_stock)
-                # print('-------------------------------ledger_entries_for_consuption-------',ledger_entries_for_consuption)
-                
-                #for entry in ledger_entries:
-            #     wh = frappe.db.get_value("Warehouse",entry.warehouse,"custom_project")
-                # if wh==filters.get("project"):
+                    watchmen.append(f"{staff.employee_name} ({staff.shift})")            
             row = {
                 "id": ts.timesheet,
                 "site": ts.site,
@@ -195,13 +142,55 @@ def get_report_data(filters):
                 "remark": frappe.db.get_value("Direct Timesheet", ts.timesheet, "remarks") or "",
                 # "cement_stock":ledger_entries[0].qty_after_transaction if ledger_entries else "",
                 # "cement_stock":sum([(consume.qty_after_transaction) for consume in ledger_entries_for_stock]) or 0,
-                "cement_stock":cement_stock,
-                "cement_consumption":sum([(consume.actual_qty) for consume in ledger_entries_for_consuption if consume.actual_qty<0]) or 0 ,
+                # "cement_stock":cement_stock,
+                # "cement_consumption":sum([(consume.actual_qty) for consume in ledger_entries_for_consuption if consume.actual_qty<0]) or 0 ,
                 # "cement_consumption":ledger_entries[0].actual_qty  if ledger_entries else "",
             }
-
             project_rows.append(row)
-
+            
+        # if ts.site and ts.timesheet not in timesheet_names:
+        #     timesheet_names.append(ts.timesheet)
+        #     # print('-----timehseet names afeter--',timesheet_names)
+        #     project_related_warehouse = frappe.get_value("Warehouse",filters={
+        #         "custom_project" : ts.project
+        #     },fieldname="name")
+        #     # old_project =  ts.project
+            
+        #     # print('---this is the project -- ',ts.project,'--------',project_related_warehouse)
+        #     # print('----------this is warehosue----',project_related_warehouse, '-----',ts.project)
+        #     from frappe.utils import getdate
+        #     timesheet_date_obj = getdate(ts.timesheet_date)
+        #     cement_stock = 0
+        #     for item in cement_group_items:
+        #         ledger_entries_for_stock = frappe.db.get_all("Stock Ledger Entry",
+        #                                         filters={
+        #                                         "item_code": item,
+        #                                         "posting_date": timesheet_date_obj,
+        #                                         "warehouse": project_related_warehouse
+        #                                         },order_by ="modified desc" ,
+        #                                         limit=1,
+        #                                         fields=["name","item_code","warehouse","qty_after_transaction","actual_qty","posting_date"]
+        #                                         )
+        #         # print('-------------------------------ledger_entries_for_stock-------',ledger_entries_for_stock)
+        #         if ledger_entries_for_stock:
+        #             # print('-----ledger_entries_for_stock[0].actual_qty-- ',ledger_entries_for_stock[0].qty_after_transaction)
+        #             # print('-----ledger_entries_for_stock[0].name-- ',ledger_entries_for_stock[0].name)
+        #             # print('-----ledger_entries_for_stock[0].item_code-- ',ledger_entries_for_stock[0].item_code)
+        #             cement_stock = cement_stock+ledger_entries_for_stock[0].qty_after_transaction
+        #             # print("---------cement stock ----",cement_stock)
+                
+        #     ledger_entries_for_consuption = frappe.db.get_all("Stock Ledger Entry",
+        #                                     filters={
+        #                                     "item_code": ["in", cement_group_items],
+        #                                     "posting_date": timesheet_date_obj,
+        #                                     "warehouse": project_related_warehouse
+        #                                     },order_by ="modified desc" ,
+        #                                     # fields ='*'
+        #                                     fields=["name","warehouse","qty_after_transaction","actual_qty","posting_date"]
+        #                                     )
+        #     row['cement_stock']=cement_stock
+        #     row['cement_consumption']=sum([(consume.actual_qty) for consume in ledger_entries_for_consuption if consume.actual_qty<0]) or 0
+            
         vehicle_summary = ""
         if project_location:
             vehicle_data = frappe.db.sql("""
@@ -218,22 +207,7 @@ def get_report_data(filters):
             data.append({
                 "site": ts.site,
                 "vehicle_summary": vehicle_summary
-            })
-        # print()
-        # print()
-        
-        # print()
-        # print()
-        # print()
-        
-        # print('\n---------project rowsss--',project_rows)
-        # print('-------ts project site--',ts.site)
-            
-    # ledger_entries = frappe.db.get_all("Stock Ledger Entry",filters={"item_code":"Cement","posting_date":["<=",date.today()],"posting_time":["<=",time]},fields=["name","warehouse","qty_after_transaction"])
-    # for entry in ledger_entries:
-    #     wh = frappe.db.get_value("Warehouse",entry.warehouse,"custom_project")
-        # if wh==filters.get("project"):/
-            # pass
+            })                        
 
     return data
 
@@ -358,18 +332,18 @@ def get_columns():
             "fieldtype": "Data",
             "width": 300
         },
-        {
-            "label": _("Cement Stock"),
-            "fieldname": "cement_stock",
-            "fieldtype": "Float",
-            "width": 150
-        },
-        {
-            "label": _("Cement Consumption"),
-            "fieldname": "cement_consumption",
-            "fieldtype": "Float",
-            "width": 150
-        },
+        # {
+        #     "label": _("Cement Stock"),
+        #     "fieldname": "cement_stock",
+        #     "fieldtype": "Float",
+        #     "width": 150
+        # },
+        # {
+        #     "label": _("Cement Consumption"),
+        #     "fieldname": "cement_consumption",
+        #     "fieldtype": "Float",
+        #     "width": 150
+        # },
         {
             "label": _("Vehicle Summary"),
             "fieldname": "vehicle_summary",
