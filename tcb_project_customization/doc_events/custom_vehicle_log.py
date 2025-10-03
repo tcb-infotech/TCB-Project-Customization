@@ -84,4 +84,4 @@ def fetch_last_date(doc, method=None):
 
         
 def set_last_date(doc,method=None):
-    frappe.db.set_value("Vehicle Log",doc.name,"custom_last_date",today())
+    frappe.db.set_value("Vehicle Log",doc.name,"custom_last_date",doc.date)
