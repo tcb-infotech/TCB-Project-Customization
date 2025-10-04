@@ -147,7 +147,7 @@ def prepare_data(data, so_elapsed_time, filters):
 
 	if filters.get("group_by_so"):
 		sales_order_map = {}
-
+	new_data = []
 	for row in data:
 		# sum data for chart
 		completed += row["billed_amount"]
