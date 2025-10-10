@@ -7,14 +7,14 @@
  "doctype": "Report",
  "idx": 0,
  "is_standard": "Yes",
- "modified": "2020-10-03 10:54:54.591445",
+ "modified": "2025-10-03 12:54:54.591445",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
- "name": "Custom Sales Order Analysis",
+ "name": "HRC Sales Order Analysis",
  "owner": "Administrator",
  "prepared_report": 0,
  "ref_doctype": "Sales Order",
- "report_name": "Custom Sales Order Analysis",
+ "report_name": "HRC Sales Order Analysis",
  "report_type": "Script Report",
  "roles": [
   {

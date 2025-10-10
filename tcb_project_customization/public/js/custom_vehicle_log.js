@@ -87,6 +87,20 @@ frappe.ui.form.on('Vehicle Log', {
                 });
             }
         }
+    },
+
+    odometer:function(frm){
+        calculate_mileage(frm)
+    },
+    fuel_qty:function(frm){
+        calculate_mileage(frm)
     }
 });
 
+
+function calculate_mileage(frm){
+    if(frm.doc.fuel_qty && frm.doc.last_odometer && frm.doc.odometer){
+        frm.set_value("custom_mileage_auto_calculate",(frm.doc.odometer - frm.doc.last_odometer)/frm.doc.fuel_qty)
+        frm.refresh_field("custom_mileage_auto_calculate")
+    }
+}
