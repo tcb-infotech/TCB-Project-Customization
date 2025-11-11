@@ -21,11 +21,7 @@
   "ifsc_code",
   "micro_code",
   "compensation_section",
-  "land",
-  "rasta",
-  "column_break_iivx",
-  "crop",
-  "stringing",
+  "compensation_areas",
   "section_break_ezfq",
   "paid_total_amount",
   "utr_id",
@@ -104,30 +100,6 @@
    "label": "Compensation"
   },
   {
-   "fieldname": "land",
-   "fieldtype": "Float",
-   "label": "Land"
-  },
-  {
-   "fieldname": "rasta",
-   "fieldtype": "Float",
-   "label": "Rasta"
-  },
-  {
-   "fieldname": "column_break_iivx",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "crop",
-   "fieldtype": "Float",
-   "label": "Crop"
-  },
-  {
-   "fieldname": "stringing",
-   "fieldtype": "Float",
-   "label": "Stringing"
-  },
-  {
    "fieldname": "section_break_ezfq",
    "fieldtype": "Section Break"
   },
@@ -171,12 +143,18 @@
    "fieldname": "posting_date",
    "fieldtype": "Date",
    "label": "Posting Date"
+  },
+  {
+   "fieldname": "compensation_areas",
+   "fieldtype": "Table",
+   "label": "Compensation Areas",
+   "options": "Compensation Areas"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-11-10 10:43:38.796334",
+ "modified": "2025-11-10 16:08:30.378628",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Compensation Records",

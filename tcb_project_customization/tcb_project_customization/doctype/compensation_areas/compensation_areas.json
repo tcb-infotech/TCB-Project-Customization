@@ -1,0 +1,66 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-11-10 16:06:13.945594",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "compensation_date",
+  "land",
+  "crop",
+  "rasta",
+  "stringing",
+  "foundation"
+ ],
+ "fields": [
+  {
+   "fieldname": "crop",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Crop"
+  },
+  {
+   "fieldname": "rasta",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Rasta"
+  },
+  {
+   "fieldname": "stringing",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Stringing"
+  },
+  {
+   "fieldname": "foundation",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Foundation"
+  },
+  {
+   "fieldname": "land",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Land"
+  },
+  {
+   "fieldname": "compensation_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Compensation Date"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-11-11 10:29:02.307501",
+ "modified_by": "Administrator",
+ "module": "TCB Project Customization",
+ "name": "Compensation Areas",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

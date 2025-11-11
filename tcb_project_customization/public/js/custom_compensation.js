@@ -1,18 +1,14 @@
 frappe.ui.form.on("Compensation Records",{
-    land:function(frm){
-        calculate_total(frm)
-    },
-    crop:function(frm){
-        calculate_total(frm)
-    },
-    rasta:function(frm){
-        calculate_total(frm)
-    },
-    stringing:function(frm){
-        calculate_total(frm)
-    },
+    validate:function(frm,cdt,cdn){
+        calculate_total(frm,cdt,cdn)
+    }
+
 })
 
-function calculate_total(frm){
-    frm.set_value("paid_total_amount",flt(frm.doc.land+frm.doc.rasta+frm.doc.crop+frm.doc.stringing))
+function calculate_total(frm,cdt,cdn){
+    let sum = 0
+    frm.doc.compensation_areas.forEach((row)=>{
+        sum+= (row.land+row.rasta+row.foundation+row.stringing+row.crop)
+    })
+    frm.set_value("paid_total_amount",sum)
 }
