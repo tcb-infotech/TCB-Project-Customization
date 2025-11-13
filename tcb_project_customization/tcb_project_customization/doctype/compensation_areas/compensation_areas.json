@@ -11,7 +11,8 @@
   "crop",
   "rasta",
   "stringing",
-  "foundation"
+  "foundation",
+  "compensation_enabling"
  ],
  "fields": [
   {
@@ -49,12 +50,18 @@
    "fieldtype": "Date",
    "in_list_view": 1,
    "label": "Compensation Date"
+  },
+  {
+   "fieldname": "compensation_enabling",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Compensation Enabling"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-11-11 10:29:02.307501",
+ "modified": "2025-11-13 18:38:15.603838",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Compensation Areas",
