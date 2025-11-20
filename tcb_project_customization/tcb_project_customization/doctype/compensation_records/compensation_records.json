@@ -111,6 +111,7 @@
   {
    "fieldname": "utr_id",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "UTR ID"
   },
   {
@@ -120,6 +121,7 @@
   {
    "fieldname": "payment_date",
    "fieldtype": "Date",
+   "hidden": 1,
    "label": "Payment Date"
   },
   {
@@ -154,7 +156,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-11-10 16:08:30.378628",
+ "modified": "2025-11-20 13:43:47.425928",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Compensation Records",
