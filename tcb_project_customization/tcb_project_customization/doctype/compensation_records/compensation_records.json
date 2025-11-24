@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{tower_no}-{name_of_farmer}-{utr_id}",
+ "autoname": "format:{tower_no}-{name_of_farmer}-{#####}",
  "creation": "2025-11-05 09:57:04.374739",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -147,6 +147,7 @@
    "label": "Posting Date"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "compensation_areas",
    "fieldtype": "Table",
    "label": "Compensation Areas",
@@ -156,7 +157,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-11-20 13:43:47.425928",
+ "modified": "2025-11-24 15:29:53.685655",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Compensation Records",
