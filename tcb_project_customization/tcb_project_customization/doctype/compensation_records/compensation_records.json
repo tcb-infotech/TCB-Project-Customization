@@ -46,7 +46,9 @@
   {
    "fieldname": "tower_no",
    "fieldtype": "Data",
-   "label": "Tower No."
+   "in_list_view": 1,
+   "label": "Tower No.",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_wxub",
@@ -146,7 +148,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-11-24 15:41:26.606618",
+ "modified": "2025-11-24 15:58:48.480413",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Compensation Records",
