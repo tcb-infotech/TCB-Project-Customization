@@ -172,6 +172,9 @@ doc_events = {
                     "tcb_project_customization.doc_events.custom_vehicle_log.set_last_date",
                     "tcb_project_customization.doc_events.vehicle.calculate_vehicle_mileage"
                     ]
+    },
+    "Direct Timesheet":{
+        "validate":"tcb_project_customization.doc_events.custom_direct_timesheet.validate"
     }
     # "Request for Quotation":{
     #     "on_submit":'tcb_project_customization.doc_events.mail_request_for_quotation.mail_rfq'
