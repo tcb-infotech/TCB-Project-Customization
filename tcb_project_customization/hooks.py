@@ -60,7 +60,7 @@ doctype_js = {
     "Request for Quotation":"public/js/custom_request_for_quotation.js",
     "Material Receipt":"public/js/custom_material_receipt.js",
     "Delivery Instruction":"public/js/custom_delivery_instruction.js",
-    "Cube Test":"public/js/cube_test.js"
+    "Cube Test":"public/js/cube_test.js",
 }
 doctype_list_js = {"Attendance" : "tcb_project_customization/doctype/attendance/attendance_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -282,11 +282,18 @@ doc_events = {
 
 
 
-# fixtures=[
+fixtures=[
+    {
+        "dt": "Property Setter",
+        "filters": [
+            ["doc_type", "=", "Vehicle Service"],
+            ["field_name", "!=", ""]
+        ]
+    }
 #     {
 #         "dt": "Role Profile",
 #         "filters":[
 #             ['name','=','Project Mgt']
 #         ]
 #     }
-# ]
+]
