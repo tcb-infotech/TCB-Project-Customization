@@ -61,6 +61,7 @@ doctype_js = {
     "Material Receipt":"public/js/custom_material_receipt.js",
     "Delivery Instruction":"public/js/custom_delivery_instruction.js",
     "Cube Test":"public/js/cube_test.js",
+    "Compensation Records":"public/js/custom_compensation.js"
 }
 doctype_list_js = {"Attendance" : "tcb_project_customization/doctype/attendance/attendance_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -171,6 +172,9 @@ doc_events = {
                     "tcb_project_customization.doc_events.custom_vehicle_log.set_last_date",
                     "tcb_project_customization.doc_events.vehicle.calculate_vehicle_mileage"
                     ]
+    },
+    "Direct Timesheet":{
+        "validate":"tcb_project_customization.doc_events.custom_direct_timesheet.validate"
     }
     # "Request for Quotation":{
     #     "on_submit":'tcb_project_customization.doc_events.mail_request_for_quotation.mail_rfq'

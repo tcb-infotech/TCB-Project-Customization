@@ -82,8 +82,7 @@
    "default": "Today",
    "fieldname": "start_date",
    "fieldtype": "Date",
-   "label": "Start Date",
-   "read_only": 1
+   "label": "Start Date"
   },
   {
    "fetch_from": "project.project_name",
@@ -151,7 +150,7 @@
    "link_fieldname": "custom_direct_timesheet"
   }
  ],
- "modified": "2024-11-14 13:54:53.992998",
+ "modified": "2025-11-27 15:53:58.699331",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Direct Timesheet",

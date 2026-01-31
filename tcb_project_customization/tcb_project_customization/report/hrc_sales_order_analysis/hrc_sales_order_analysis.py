@@ -65,7 +65,6 @@ def get_data(conditions, filters):
 		f"""
 		SELECT
 			so.transaction_date as date,
-			so.custom_boq_inspections as custom_boq_inspections,
 			soi.delivery_date as delivery_date,
 			soi.prevdoc_docname as quotation,
 			so.name as sales_order,
@@ -298,12 +297,12 @@ def get_columns(filters):
 			"options": "Customer",
 			"width": 180,
 		},
-  		{
-			"label": _("Inspection"),
-			"fieldname": "custom_boq_inspections",
-			"fieldtype": "Long Text",
-			"width": 120,
-		},
+  		# {
+		# 	"label": _("Inspection"),
+		# 	"fieldname": "custom_boq_inspections",
+		# 	"fieldtype": "Long Text",
+		# 	"width": 120,
+		# },
 	]
 
 	if not filters.get("group_by_so"):

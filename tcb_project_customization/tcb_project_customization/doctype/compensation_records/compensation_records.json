@@ -1,0 +1,175 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{tower_no}-{name_of_farmer}-{#####}",
+ "creation": "2025-11-05 09:57:04.374739",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_2wwf",
+  "amended_from",
+  "tower_no",
+  "project",
+  "posting_date",
+  "column_break_wxub",
+  "name_of_farmer",
+  "address",
+  "bank_details_section",
+  "ac_no",
+  "bank_name",
+  "column_break_usyo",
+  "ifsc_code",
+  "micro_code",
+  "compensation_section",
+  "compensation_areas",
+  "section_break_ezfq",
+  "paid_total_amount",
+  "column_break_ixnr",
+  "last_payment_remarks",
+  "grand_total"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_2wwf",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Compensation Records",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "tower_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Tower No.",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_wxub",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "name_of_farmer",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "label": "Name of Farmer"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "fieldname": "bank_details_section",
+   "fieldtype": "Section Break",
+   "label": "Bank Details"
+  },
+  {
+   "fieldname": "ac_no",
+   "fieldtype": "Data",
+   "label": "A/C No"
+  },
+  {
+   "fieldname": "bank_name",
+   "fieldtype": "Data",
+   "label": "Bank Name"
+  },
+  {
+   "fieldname": "column_break_usyo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ifsc_code",
+   "fieldtype": "Data",
+   "label": "IFSC Code"
+  },
+  {
+   "fieldname": "micro_code",
+   "fieldtype": "Data",
+   "label": "Micro Code"
+  },
+  {
+   "fieldname": "compensation_section",
+   "fieldtype": "Section Break",
+   "label": "Compensation"
+  },
+  {
+   "fieldname": "section_break_ezfq",
+   "fieldtype": "Section Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "paid_total_amount",
+   "fieldtype": "Float",
+   "label": "Paid Total Amount"
+  },
+  {
+   "fieldname": "column_break_ixnr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "last_payment_remarks",
+   "fieldtype": "Small Text",
+   "label": "Last Payment Remarks"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "grand_total",
+   "fieldtype": "Float",
+   "label": "Grand Total"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "link_filters": "[[\"Project\",\"status\",\"!=\",\"Cancelled\"]]",
+   "options": "Project"
+  },
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "compensation_areas",
+   "fieldtype": "Table",
+   "label": "Compensation Areas",
+   "options": "Compensation Areas"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-11-24 15:58:48.480413",
+ "modified_by": "Administrator",
+ "module": "TCB Project Customization",
+ "name": "Compensation Records",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
