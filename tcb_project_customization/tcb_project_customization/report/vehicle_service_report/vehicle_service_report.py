@@ -85,48 +85,43 @@ def execute(filters=None):
         condition_sql = " AND " + " AND ".join(conditions)
 
     raw_data = frappe.db.sql(f"""
-        SELECT
-            vl.license_plate,
-            vl.model,
-            vl.name AS log_id,
-            vl.date,
-            vs.service_item,
-            vs.type,
-            vs.custom_remarks,
-            vs.expense_amount,
-            vl.odometer
-        FROM `tabVehicle Log` vl
-        INNER JOIN (
             SELECT
-                license_plate,
-                MAX(date) AS latest_log
-            FROM `tabVehicle Log`
-            WHERE docstatus = 1
-            GROUP BY license_plate
-        ) latest
-            ON latest.license_plate = vl.license_plate
-        AND latest.latest_log = vl.date
-        INNER JOIN `tabVehicle Service` vs
-            ON vs.parent = vl.name
-        WHERE
-            vl.docstatus = 1
-            {condition_sql}
-        ORDER BY vl.license_plate
-    """, values, as_dict=True)
+                vl.name AS log_id,
+                vl.license_plate,
+                vl.model,
+                vl.date,
+                vl.odometer,
+                vs.service_item,
+                vs.type,
+                vs.custom_remarks,
+                vs.expense_amount
+            FROM `tabVehicle Log` vl
+            INNER JOIN `tabVehicle Service` vs
+                ON vs.parent = vl.name
+            WHERE
+                vl.docstatus = 1
+                {condition_sql}
+            ORDER BY
+                vl.license_plate,
+                vl.date,
+                vl.name,
+                vs.idx
+        """, values, as_dict=True)
 
     data = []
-    last_vehicle = None
+    last_log = None
 
     for row in raw_data:
-        if row["license_plate"] == last_vehicle:
+        if row["log_id"] == last_log:
             row["license_plate"] = ""
             row["model"] = ""
             row["log_id"] = ""
             row["date"] = ""
             row["odometer"] = ""
         else:
-            last_vehicle = row["license_plate"]
+            last_log = row["log_id"]
 
         data.append(row)
+
 
     return columns, data
