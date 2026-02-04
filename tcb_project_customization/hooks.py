@@ -219,6 +219,9 @@ doc_events = {
 # override_whitelisted_methods = {
 # 	"frappe.desk.doctype.event.event.get_events": "tcb_project_customization.event.get_events"
 # }
+override_doctype_class = {
+    "Vehicle Log": "tcb_project_customization.overrides.vehicle_log.VehicleLog"
+}
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,

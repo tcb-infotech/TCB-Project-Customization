@@ -2,7 +2,24 @@
 // For license information, please see license.txt
 
 frappe.query_reports["Vehicle Fuel Report"] = {
-	"filters": [
-
-	]
+    filters: [
+        {
+            fieldname: "vehicle",
+            label: "Vehicle",
+            fieldtype: "Link",
+            options: "Vehicle"
+        },
+        {
+            fieldname: "from_date",
+            label: "From Date",
+            fieldtype: "Date",
+            default: frappe.datetime.add_months(frappe.datetime.now_date(), -1)
+        },
+        {
+            fieldname: "to_date",
+            label: "To Date",
+            fieldtype: "Date",
+            default: frappe.datetime.now_date()
+        }
+    ]
 };

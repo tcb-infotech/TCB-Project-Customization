@@ -5,33 +5,50 @@ import frappe
 def calculate_vehicle_mileage(doc, method=None):
     # doc = frappe.get_doc("Vehicle Log")
     # if not doc.docstatus == 0:
-    refuel_logs = frappe.db.get_all(
-        "Vehicle Log",
-        filters={"license_plate": doc.license_plate, "fuel_qty" : [">", 0]},
-        fields=["*"],
-        order_by="creation desc",
-        limit=2
-    )
-    if len(refuel_logs) < 2:
-        # not enough logs to compute mileage
-        frappe.db.set_value('Vehicle', doc.license_plate, {'custom_vehicle_mileage':"Vehicle Not Refueled Yet!"} , update_modified=False)
-        return
-    
-    refuel_log_1 = refuel_logs[0]
-    refuel_log_2 = refuel_logs[1]
-    
-    # print('-----this is refuel log ----',refuel_log_1)
-    # print('-----this is refuel log ----',refuel_log_2)
-    
-    # print('-----this is refuel log ----',refuel_log_1.odometer - refuel_log_2.odometer)
-    # print('-----this is refuel log ----',(refuel_log_1.odometer - refuel_log_2.odometer)/refuel_log_2.fuel_qty)
-    vehicle_mileage = (refuel_log_1.odometer - refuel_log_2.odometer)/refuel_log_2.fuel_qty
-    # related_vehicle_doc = frappe.get_doc('Vehicle',doc.license_plate)
-    
-    # frappe.db.set_value()
-    
-    frappe.db.set_value('Vehicle', doc.license_plate, {'custom_vehicle_mileage':vehicle_mileage} , update_modified=False)
-    # after_refuel_logs = frappe.db.get_all(
+    if doc.fuel_qty > 0 :
+        # refuel_logs = frappe.db.get_all(
+        #     "Vehicle Log",
+        #     filters={"license_plate": doc.license_plate, "fuel_qty" : [">", 0]},
+        #     fields=["*"],
+        #     order_by="creation desc",
+        #     limit=2
+        # )
+        refuel_logs = frappe.db.get_all(
+                    "Vehicle Log",
+                    filters={
+                        "license_plate": doc.license_plate,
+                        "docstatus": 1
+                    },
+                    or_filters=[
+                        {"fuel_qty": [">", 0]},
+                        {"custom_is_odometer_reset": 1}
+                    ],
+                    fields=["name", "odometer", "fuel_qty", "custom_is_odometer_reset"],
+                    order_by="creation desc",
+                    limit=2
+                )
+        
+        if len(refuel_logs) < 2:
+            # not enough logs to compute mileage
+            frappe.db.set_value('Vehicle', doc.license_plate, {'custom_vehicle_mileage':"Vehicle Not Refueled Yet!"} , update_modified=False)
+            return
+        
+        refuel_log_1 = refuel_logs[0]
+        refuel_log_2 = refuel_logs[1]
+        
+        # print('-----this is refuel log ----',refuel_log_1)
+        # print('-----this is refuel log ----',refuel_log_2)
+        
+        # print('-----this is refuel log ----',refuel_log_1.odometer - refuel_log_2.odometer)
+        
+        # print('-----this is refuel log ----',(refuel_log_1.odometer - refuel_log_2.odometer)/refuel_log_2.fuel_qty)
+        vehicle_mileage = (refuel_log_1.odometer - refuel_log_2.odometer)/(refuel_log_1.fuel_qty)
+        # vehicle_mileage = (refuel_log_1.odometer - refuel_log_2.odometer)/(refuel_log_2.fuel_qty)
+        # related_vehicle_doc = frappe.get_doc('Vehicle',doc.license_plate
+        # frappe.db.set_value()
+        
+        frappe.db.set_value('Vehicle', doc.license_plate, {'custom_vehicle_mileage':round(vehicle_mileage,2)} , update_modified=False)
+        # after_refuel_logs = frappe.db.get_all(
     #     "Vehicle Log",
     #     filters={"license_plate": doc.license_plate, "creation" : [">", refuel_log_1.creation]},
     #     fields=["*"],

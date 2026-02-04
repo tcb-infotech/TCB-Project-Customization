@@ -106,7 +106,8 @@
    "allow_on_submit": 1,
    "fieldname": "paid_total_amount",
    "fieldtype": "Float",
-   "label": "Paid Total Amount"
+   "label": "Paid Total Amount",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_ixnr",
@@ -140,7 +141,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-01-31 13:02:12.888021",
+ "modified": "2026-02-04 17:06:34.931950",
  "modified_by": "Administrator",
  "module": "TCB Project Customization",
  "name": "Compensation Records",
